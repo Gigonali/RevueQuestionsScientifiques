@@ -1,0 +1,82 @@
+<div class="d-flex">
+  <div>
+    <div *ngIf="menuToggle" class="bg-dark border-dark border-right border-bottom divHover">
+      <h3 (click)="changeTab('admin')" class="border-dark border-bottom text-white p-2 my-auto mx-auto">RQS INTRANET</h3>
+      <div *ngIf="menuToggle" class="border-right">
+        <div class="list-group list-group-flush" id="panelList" role="tablist">
+          <a href="admin#recherche" (click)="changeTab('recherche')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'recherche' }">Recherche</a>
+          <a href="admin#nouveauProjet" (click)="changeTab('nouveauProjet')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'nouveauProjet' }">Nouveau projet</a>
+          <a href="admin#nouveauCompteRendu" (click)="changeTab('nouveauCompteRendu')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'nouveauCompteRendu' }">Nouveau compte rendu</a>
+          <a href="admin#articles" (click)="changeTab('articles')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'articles' }">Articles</a>
+          <a href="admin#analysesCritique" (click)="changeTab('analysesCritique')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'analysesCritique' }">Analyses critiques</a>
+          <a href="admin#comptesRendus" (click)="changeTab('comptesRendus')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'comptesRendus' }">Comptes rendus</a>
+          <a href="admin#divers" (click)="changeTab('divers')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'divers' }">Divers</a>
+          <a href="admin#specialHelha" (click)="changeTab('specialHelha')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'specialHelha' }">Spéciale HELHa</a>
+          <a href="admin#publicationsTerminées" (click)="changeTab('publicationsTerminées')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'publicationsTerminées' }">Publications terminées</a>
+          <a href="admin#livres" (click)="changeTab('livres')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'livres' }">Livres</a>
+          <a href="admin#personnes" (click)="changeTab('personnes')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'personnes' }">Personnes</a>
+          <a href="admin#editeurs" (click)="changeTab('editeurs')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'editeurs' }">Éditeurs</a>
+          <a href="admin#personnalisation" (click)="changeTab('personnalisation')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'personnalisation' }">Personnalisation</a>
+          <a href="admin#messagesAutomatiques" (click)="changeTab('messagesAutomatiques')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'messagesAutomatiques' }">Messages automatiques</a>
+          <a href="admin#maintenance" (click)="changeTab('maintenance')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'maintenance' }">Maintenance</a>
+          <a href="admin#parametresDeConnexion" (click)="changeTab('parametresDeConnexion')" class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'parametresDeConnexion' }">Paramètres de connexion</a>
+          <a href="lienamettre" class="list-group-item list-group-item-action itemHover">Deconnexion</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-grow-1">
+    <div (click)="toggleMenu()" class="bg-light border-dark border-bottom divHover">
+      <h3 class="p-2 my-auto"><i class="fas fa-bars"></i> Administrateur</h3>
+    </div>
+    <div class="ml-1 mt-1 mb-1 mr-1">
+      <div class="tab-content">
+        <!-- les différentes tabs affichables -->
+        <div [ngSwitch]="tabSelected">
+          <div *ngSwitchCase="'recherche'"><app-tab-recherche></app-tab-recherche></div>
+          <div *ngSwitchCase="'nouveauProjet'"><app-tab-nouveauprojet></app-tab-nouveauprojet></div>
+          <div *ngSwitchCase="'nouveauCompteRendu'"><app-tab-nouveaucompterendu></app-tab-nouveaucompterendu></div>
+          <div *ngSwitchCase="'articles'"><app-tab-articles></app-tab-articles></div>
+          <div *ngSwitchCase="'analysesCritique'"><app-tab-analysescritique></app-tab-analysescritique></div>
+          <div *ngSwitchCase="'comptesRendus'"><app-tab-comptesrendus></app-tab-comptesrendus></div>
+          <div *ngSwitchCase="'divers'"><app-tab-divers></app-tab-divers></div>
+          <div *ngSwitchCase="'specialHelha'"><app-tab-specialhelha></app-tab-specialhelha></div>
+          <div *ngSwitchCase="'publicationsTerminées'"><app-tab-publicationsterminees></app-tab-publicationsterminees></div>
+          <div *ngSwitchCase="'livres'"><app-tab-livres></app-tab-livres></div>
+          <div *ngSwitchCase="'personnes'"><app-tab-personnes></app-tab-personnes></div>
+          <div *ngSwitchCase="'editeurs'"><app-tab-editeurs></app-tab-editeurs></div>
+          <div *ngSwitchCase="'personnalisation'"><app-tab-personnalisation></app-tab-personnalisation></div>
+          <div *ngSwitchCase="'messagesAutomatiques'"><app-tab-messagesautomatique></app-tab-messagesautomatique></div>
+          <div *ngSwitchCase="'maintenance'"><app-tab-maintenance></app-tab-maintenance></div>
+          <div *ngSwitchCase="'parametresDeConnexion'"><app-tab-parametredeconnexion></app-tab-parametredeconnexion></div>
+          <!-- accueil -->
+          <div *ngSwitchDefault>
+            <div *ngIf="showBvnMessage" class="alert alert-success alert-dismissible fade show alertFont m-1" role="alert">
+              <h3>Content de vous revoir {{user.prenom}} !</h3>
+              <button (click)="showBvnMsg()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <app-accueil-admin-gestio></app-accueil-admin-gestio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

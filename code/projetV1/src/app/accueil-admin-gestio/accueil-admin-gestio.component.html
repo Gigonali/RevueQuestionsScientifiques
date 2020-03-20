@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-9 card rounded">
+
+
+
+    </div>
+    <div class="col card rounded ml-1">
+      <div class="mb-3">
+        <h4 class="mt-1 mb-1" >Échéances</h4>
+        <table class="table table-striped">
+          <tbody>
+            <tr *ngFor="let echance of echeances; let index = index" [ngClass]="{'bg-dark text-white': 1 === index%2}">
+              <td>{{formatDate(echance.date)}}</td>
+              <td class="col-sm-2">{{echance.libelle}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary">Voir plus d'échéances <i class="fas fa-plus-square"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,315 @@
+.sidenav {
+  height: 100vh;
+  background-color: #000;
+  overflow-x: visible;
+}
+
+.main {
+  padding: 0px 10px;
+  height: 100vh;
+}
+
+.alertFont {
+  text-align: center;
+}
+
+@media screen and (min-width: 320px) {
+  .sidenav {
+    height: 20%;
+    width: 100%;
+  }
+
+  .main {
+    padding: 10px;
+    width: auto;
+    height: auto;
+  }
+
+  .login-form{
+    padding-top: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .userImgProfile {
+    width: 100px;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    width:120px;
+    height:auto;
+  }
+
+  .unamerImg {
+    width:50px;
+    height:auto;
+  }
+
+  .rqsImg {
+    width:170px;
+    height:auto;
+  }
+
+  .alertFont {
+    font-size: 12px;
+    text-align: start;
+  }
+
+}
+
+@media screen and (min-width: 425px) {
+  .sidenav {
+    height: 20%;
+    width: 100%;
+  }
+
+  .main {
+    padding: 10px;
+    width: auto;
+    height: auto;
+  }
+
+  .login-form{
+    padding-top: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .userImgProfile {
+    width: 150px;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    padding: 5px;
+    width:150px;
+    height:auto;
+  }
+
+  .unamerImg {
+    padding: 5px;
+    width: 80px;
+    height:auto;
+  }
+
+  .rqsImg {
+    padding: 5px;
+    width: 230px;
+    height:auto;
+  }
+
+  .alertFont {
+    font-size: 18px;
+    text-align: start;
+  }
+
+}
+
+@media screen and (min-width: 623px) {
+  .sidenav {
+    height: 20%;
+    width: 100%;
+  }
+
+  .main {
+    padding: 10px;
+    width: auto;
+    height: auto;
+  }
+
+  .login-form{
+    padding-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .userImgProfile {
+    width: 150px;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    padding: 5px;
+    width:200px;
+    height:auto;
+  }
+
+  .unamerImg {
+    padding: 5px;
+    width: 130px;
+    height:auto;
+  }
+
+  .rqsImg {
+    padding: 5px;
+    width: 330px;
+    height:auto;
+  }
+
+  .alertFont {
+    font-size: 18px;
+    text-align: start;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .sidenav {
+    height: 20%;
+    width: 100%;
+  }
+
+  .main {
+    padding: 10px;
+    width: auto;
+    height: auto;
+  }
+
+  .login-form{
+    padding-top: 10px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .userImgProfile {
+    width: 150px;
+    height: auto;
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    padding: 5px;
+    width:200px;
+    height:auto;
+  }
+
+  .unamerImg {
+    padding: 5px;
+    width: 130px;
+    height:auto;
+  }
+
+  .rqsImg {
+    padding: 5px;
+    width: 330px;
+    height:auto;
+  }
+
+  .alertFont {
+    font-size: 18px;
+    text-align: start;
+  }
+
+}
+
+@media screen and (min-width: 1440px){
+  .main{
+      margin-left: 60%;
+      height: 100vh;
+  }
+
+  .sidenav{
+      width: 60%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+  }
+
+  .userImgProfile {
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+  }
+
+  .login-form{
+    padding-top: 20%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    padding: 5px;
+    width:200px;
+    height:auto;
+  }
+
+  .unamerImg {
+    padding: 5px;
+    width: 130px;
+    height:auto;
+  }
+
+  .rqsImg {
+    padding: 5px;
+    width: 330px;
+    height:auto;
+  }
+
+}
+
+@media screen and (min-width: 2560px){
+  .main{
+      margin-left: 60%;
+      height: 100vh;
+  }
+
+  .sidenav{
+      width: 60%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+  }
+
+  .userImgProfile {
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+  }
+
+  .login-form{
+    padding-top: 25%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .helhaImg {
+    padding: 5px;
+    width:200px;
+    height:auto;
+  }
+
+  .unamerImg {
+    padding: 5px;
+    width: 130px;
+    height:auto;
+  }
+
+  .rqsImg {
+    padding: 5px;
+    width: 330px;
+    height:auto;
+  }
+
+}

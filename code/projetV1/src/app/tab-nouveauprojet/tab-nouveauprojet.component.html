@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <form>
+    <div class="row">
+      <div class="col-2 card rounded">
+        <div class="mb-3">
+          <label for="validationServer01">Chronique</label>
+          <input type="text" class="form-control" id="validationServer01" placeholder="Chronique" required>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer02">Section concernée</label>
+          <input type="text" class="form-control" id="validationServer02" placeholder="Section concernée">
+        </div>
+        <div class="mb-3">
+          <label for="validationServer00">Lieu de publication</label>
+          <select id="validationServer00" class="form-control">
+            <option selected>--- Options ---</option>
+            <option value="1">RQS</option>
+            <option value="2">HELHa</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer00">État</label>
+          <select id="validationServer00" class="form-control">
+            <option selected>----- Options -----</option>
+            <option *ngFor="let etat of etatsPublication" value="{{etat.id}}">{{etat.libelle}}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer05">Échéance remise des textes</label>
+          <input class="form-control" type="date" id="datepicker"/>
+        </div>
+      </div>
+      <div class="col-8 card rounded ml-1">
+        <div class="mb-3">
+          <label for="validationServer03">Auteur(s)</label>
+          <input type="text" class="form-control" id="validationServer03" placeholder="Auteur(s)" required>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer04">Titre</label>
+          <textarea class="form-control" id="validationServer04" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer06">Résumé projet</label>
+          <textarea class="form-control" id="validationServer06" rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer07">Liste des actions</label>
+          <table class="table table-striped">
+            <tbody>
+              <tr *ngFor="let action of actions; let index = index" [ngClass]="{'bg-dark text-white': 1 === index%2}">
+                <td>{{formatDate(action.date)}}</td>
+                <td class="col-sm-2">{{action.libelle}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button (click)="addAction()" type="button" class="btn btn-secondary">Ajouter une action</button>
+        </div>
+        <div class="mb-3 text-center">
+            <!-- sauvegarder form -->
+            <button class="btn btn-primary mr-2" (click)="onSubmit();" type="submit">Sauvegarder</button>
+            <!-- effacer données du form -->
+            <button class="btn btn-warning mr-2" (click)="openSm(effacer)" type="button">Effacer</button>
+
+            <ng-template #effacer let-modal>
+              <div class="modal-header text-center">
+                <h4 class="modal-title">Attention !</h4>
+                <button type="button" class="close" aria-label="Close" (click)="onReset(modal);">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir effacer les données de ce projet ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" (click)="modal.close('Close click')">Confirmer</button>
+                <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+              </div>
+            </ng-template>
+            <!-- effacer données du form -->
+
+            <!-- annuler form -->
+            <button class="btn btn-danger" (click)="openSm(annuler)" type="button">Annuler</button>
+
+            <ng-template #annuler let-modal>
+              <div class="modal-header text-center">
+                <h4 class="modal-title">Attention !</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir annuler l'ajout de ce projet ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="onCancel(modal)">Confirmer</button>
+                <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+              </div>
+            </ng-template>
+            <!-- annuler form -->
+        </div>
+      </div>
+      <div class="col card rounded ml-1">
+        <div class="mb-3">
+          <label for="validationServer08">Commentaire</label>
+          <textarea class="form-control" id="validationServer08" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer09">Expert(s)</label>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-secondary">Ajouter un expert </button>
+        </div>
+        <div class="mb-3">
+          <label for="validationServer09">Contrôle anti-plagiat</label>
+          <select id="validationServer09" class="form-control">
+            <option selected>--- Options ---</option>
+            <option value="1">Positif</option>
+            <option value="2">Négatif</option>
+          </select><br/>
+          <textarea class="form-control" id="validationServer10" rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+    </div>
+  </form>
+</div>

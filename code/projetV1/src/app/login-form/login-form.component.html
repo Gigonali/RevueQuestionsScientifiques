@@ -1,0 +1,53 @@
+<div>
+  <div class="sidenav">
+    <app-carousel></app-carousel>
+  </div>
+  <div class="main bg-light">
+    <div>
+      <div class="login-form">
+        <div class="card">
+          <img class="card-img-top userImgProfile" src="../../assets/img/user/userProfile.png">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Adresse e-mail</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                  </div>
+                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Mot de passe</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-key"></i></div>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Mot de passe">
+                </div>
+                <div class="text-center"><a href="#">Mot de passe oublié ?</a></div>
+              </div>
+              <button (click)="onSignIn()" type="submit" class="btn btn-lg btn-block btn-primary mb-4">Connexion <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+            <div class="card-footer bg-white text-center">
+              <div class="my-auto">
+                <a href="https://www.helha.be/"><img class="helhaImg" src="../../assets/img/redirectionImg/helha.png"></a>
+                <a href="https://www.unamur.be/"><img class="unamerImg" src="../../assets/img/redirectionImg/unamur.png"></a>
+                <!-- <a href="https://www.rqs.be/"> <img class="rqsImg" src="../../assets/img/redirectionImg/rqs.png"></a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showAlert == true" class="alert alert-info alert-dismissible fade show fixed-top mt-1 mr-4 ml-4 alertFont" role="alert">
+    <strong>Ce site assure la gestion éditoriale de la Revue des Questions Scientifiques et est réservé aux collaborateurs de celle-ci.</strong><br/>
+    Si vous êtes un auteur souhaitant obtenir des informations sur vos publications, vous êtes invité à contacter directement le rédacteur en chef.<br/>
+    Si vous êtes un internaute qui souhaitent simplement consulter le site public <a href="https://www.rqs.be/">cliquez ici</a>
+    <button (click)="showAlert = false" type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>

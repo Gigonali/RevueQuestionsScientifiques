@@ -1,0 +1,8 @@
+.divHover:hover {
+  cursor: pointer;
+}
+
+.itemHover:hover {
+  background-color: lightgray;
+
+}
