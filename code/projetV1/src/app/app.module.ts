@@ -20,7 +20,6 @@ import { TabAnalysescritiqueComponent } from './tab-analysescritique/tab-analyse
 import { TabComptesrendusComponent } from './tab-comptesrendus/tab-comptesrendus.component';
 import { TabDiversComponent } from './tab-divers/tab-divers.component';
 import { TabSpecialhelhaComponent } from './tab-specialhelha/tab-specialhelha.component';
-import { TabPublicationstermineesComponent } from './tab-publicationsterminees/tab-publicationsterminees.component';
 import { TabLivresComponent } from './tab-livres/tab-livres.component';
 import { TabPersonnesComponent } from './tab-personnes/tab-personnes.component';
 import { TabEditeursComponent } from './tab-editeurs/tab-editeurs.component';
@@ -48,7 +47,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TabComptesrendusComponent,
     TabDiversComponent,
     TabSpecialhelhaComponent,
-    TabPublicationstermineesComponent,
     TabLivresComponent,
     TabPersonnesComponent,
     TabEditeursComponent,

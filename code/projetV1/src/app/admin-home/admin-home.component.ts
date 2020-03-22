@@ -12,7 +12,7 @@ interface Personne {
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent implements OnInit {
-  // donées de test
+  // données de test
   testUser: Personne = {id: 0, nom: 'Stoffel', prenom: 'Jean-François'};
   // données de test
 
@@ -25,7 +25,13 @@ export class AdminHomeComponent implements OnInit {
   // pour cacher le menu
   menuToggle = true;
 
-  // pour afficher le message de bienvenu
+  // pour montrer les listes dans le menu
+  publicationsEnCoursList = false;
+  publicationsTermineesList = false;
+  livresList = false;
+  personnesList = false;
+
+  // pour afficher le message de bienvenue
   showBvnMessage = true;
 
   constructor() { }
@@ -39,9 +45,24 @@ export class AdminHomeComponent implements OnInit {
     this.tabSelected = tab;
   }
 
-  // cacheer le menu
+  // cacher le menu
   toggleMenu() {
     this.menuToggle = !this.menuToggle;
+  }
+
+  // montrer liste dans le menu
+  collapseList(liste: string) {
+    switch (liste) {
+      case 'publicationsEnCoursList': this.publicationsEnCoursList = !this.publicationsEnCoursList; break;
+      case 'publicationsTermineesList': this.publicationsTermineesList = !this.publicationsTermineesList; break;
+      case 'livresList': this.livresList = !this.livresList; break;
+      case 'personnesList': this.personnesList = !this.personnesList; break;
+      default:
+        this.publicationsEnCoursList = false;
+        this.publicationsTermineesList = false;
+        this.livresList = false;
+        this.personnesList = false;
+    }
   }
 
   // pour cacher le message de bvn
