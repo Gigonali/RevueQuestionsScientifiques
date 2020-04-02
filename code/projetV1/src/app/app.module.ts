@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-// import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
+// Component
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -29,6 +30,9 @@ import { TabMaintenanceComponent } from './tab-maintenance/tab-maintenance.compo
 import { TabParametredeconnexionComponent } from './tab-parametredeconnexion/tab-parametredeconnexion.component';
 import { AccueilAdminGestioComponent } from './accueil-admin-gestio/accueil-admin-gestio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+// Service
+import { PersonnesService } from './services/personnes.service';
 
 @NgModule({
   declarations: [
@@ -62,9 +66,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgbModule,
     FormsModule,
     AppRoutingModule,
-    // HttpClientModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    PersonnesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
