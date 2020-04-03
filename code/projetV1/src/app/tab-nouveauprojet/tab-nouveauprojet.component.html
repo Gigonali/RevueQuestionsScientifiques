@@ -49,7 +49,7 @@
             <tbody>
               <tr *ngFor="let action of actions; let index = index" [ngClass]="{'bg-dark text-white': 1 === index%2}">
                 <td>{{formatDate(action.date)}}</td>
-                <td class="col-sm-2">{{action.libelle}}</td>
+                <td class="col-sm-2">{{action.memo}}</td>
               </tr>
             </tbody>
           </table>

@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-interface Action {
-  id: number;
-  date: Date;
-  libelle: string;
-}
+// interface
+import { Action } from '../interfaces/action';
 
 interface EtatPublication {
   id: number;
@@ -22,9 +18,9 @@ interface EtatPublication {
 export class TabNouveauprojetComponent implements OnInit {
   // données de test
   listeActions: Action[] = [
-    {id: 0, date: new Date(), libelle: 'action 1'},
-    {id: 1, date: new Date(), libelle: 'action 2'},
-    {id: 2, date: new Date(), libelle: 'action 3'}
+    {id: 0, date: new Date(), memo: 'action 1'},
+    {id: 1, date: new Date(), memo: 'action 2'},
+    {id: 2, date: new Date(), memo: 'action 3'}
   ]
 
   listEtatsPublication: EtatPublication[] = [
