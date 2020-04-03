@@ -1,10 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-interface Personne {
-  id: number;
-  nom: string;
-  prenom: string;
-}
+// interface
+import { Personne } from '../interfaces/personnes';
 
 @Component({
   selector: 'app-admin-home',
@@ -13,7 +10,7 @@ interface Personne {
 })
 export class AdminHomeComponent implements OnInit {
   // données de test
-  testUser: Personne = {id: 0, nom: 'Stoffel', prenom: 'Jean-François'};
+  testUser: Personne = {id: 0, nom: 'Stoffel', prenom: 'Jean-François', estRescenseur: false, estContact: false };
   // données de test
 
   // données de la personne

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Echeance {
-  id: number;
-  libelle: string;
-  date: Date;
-}
+import { Encheance } from '../interfaces/encheance';
 
 @Component({
   selector: 'app-accueil-admin-gestio',
@@ -13,7 +8,7 @@ interface Echeance {
 })
 export class AccueilAdminGestioComponent implements OnInit {
   // données test
-  listeEcheances: Echeance[] = [
+  listeEcheances: Encheance[] = [
     {id: 0, libelle: 'Échéance 1', date: new Date()},
     {id: 1, libelle: 'Échéance 2', date: new Date()},
     {id: 2, libelle: 'Échéance 3', date: new Date()}
@@ -25,7 +20,7 @@ export class AccueilAdminGestioComponent implements OnInit {
   stringDate: string;
 
   // liste des échéances
-  echeances: Echeance[] = this.listeEcheances;
+  echeances: Encheance[] = this.listeEcheances;
 
   constructor() { }
 
