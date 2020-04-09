@@ -1,6 +1,6 @@
 export interface Revue {
   id: number;
-  numero: string;
+  numero: number;
   specialHELHa: boolean;
 
 }

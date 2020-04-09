@@ -25,6 +25,11 @@
             class="list-group-item list-group-item-action itemHover"
             [ngClass]="{'active':tabSelected === 'nouveauCompteRendu' }">Nouveau compte rendu</a>
 
+          <!-- Revues -->
+          <a href="admin#revues" (click)="changeTab('revues')"
+            class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'revues' }">Revues</a>
+
           <!-- Publications en cours -->
           <a href="gestio#publicationsEnCours" (click)="collapseList('publicationsEnCoursList')"
             class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': publicationsEnCoursList}">
@@ -176,6 +181,9 @@
 
           <!-- Nouveau compte rendu -->
           <div *ngSwitchCase="'nouveauCompteRendu'"><app-tab-nouveaucompterendu></app-tab-nouveaucompterendu></div>
+
+          <!-- Revues -->
+          <div *ngSwitchCase="'revues'"><app-tab-revue></app-tab-revue></div>
 
           <!-- Publications en cours -->
           <div *ngSwitchCase="'articlesEnCours'"><app-tab-articles></app-tab-articles></div>

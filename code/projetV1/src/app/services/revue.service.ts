@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+// interfaces
+import { Revue } from '../interfaces/revue';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RevueService {
+
+  constructor(private http: HttpClient) { }
+
+  get(id: number): Observable<Revue> {
+    return this.http.get<Revue>(`${environment.apiURL}?id=${id}`);
+  }
+
+  getAll(): Observable<Revue[]> {
+    return this.http.get<Revue[]>(environment.apiURL);
+  }
+
+  ajouter(revue: Revue): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.apiURL}`, revue);
+  }
+
+
+  modifier(revue: Revue): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.apiURL}`, revue);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiURL}?id=${id}`);
+  }
+
+}

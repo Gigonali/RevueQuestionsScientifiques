@@ -33,6 +33,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 // Service
 import { PersonnesService } from './services/personnes.service';
+import { TabRevueComponent } from './tab-revue/tab-revue.component';
+import { RevueService } from './services/revue.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { PersonnesService } from './services/personnes.service';
     TabMaintenanceComponent,
     TabParametredeconnexionComponent,
     AccueilAdminGestioComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TabRevueComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { PersonnesService } from './services/personnes.service';
     HttpClientModule,
   ],
   providers: [
-    PersonnesService
+    PersonnesService,
+    RevueService
   ],
   bootstrap: [AppComponent]
 })

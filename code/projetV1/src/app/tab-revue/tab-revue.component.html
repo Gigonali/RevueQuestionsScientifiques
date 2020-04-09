@@ -1,0 +1,75 @@
+<div class="container-fluid card rounded">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <h2>Revues | Liste complète</h2>
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <th class="text-center" scope="col">Numéro</th>
+        <th class="text-center" scope="col">Spéciale HELHa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- récupère toutes les revues dans la db -->
+      <tr *ngFor="let revue of listRevues">
+        <td class="text-center">{{revue.numero}}</td>
+        <td class="text-center"><i class="fas"
+               [ngClass]="{'fa-check':revue.specialHELHa, 'fa-times':!revue.specialHELHa}" ></i></td>
+        <td class="text-right align-middle">
+          <!-- bouton pour modifier une revue -->
+          <span class="align-middle mr-2" id="modifierRevue" (click)="openSm(modifier)"><i class="fas fa-edit"></i></span>
+          <ng-template #modifier let-modal>
+            <div class="modal-header text-center">
+              <h4 class="modal-title">Modification</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputNum">Numéro</label>
+                  <input [(ngModel)]="revue.numero" type="text" class="form-control" id="inputNum" placeholder="{{revue.numero}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputSpe">Spéciale HELHa</label>
+                  <select id="inputSpe" class="form-control">
+                    <option [selected]="revue.specialHELHa" value="true">Oui</option>
+                    <option [selected]="!revue.specialHELHa" value="false">Non</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click')">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+          <!-- bouton pour modifier une revue -->
+
+          <!-- bouton pour supprimer une revue -->
+          <span class="align-middle" id="deleteRevue" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
+          <ng-template #delete let-modal>
+            <div class="modal-header text-center">
+              <h4 class="modal-title">Attention !</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Êtes-vous sûr de vouloir effacer cette revue ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click')">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+          <!-- bouton pour supprimer une revue -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
