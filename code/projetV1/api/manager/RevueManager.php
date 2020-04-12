@@ -56,6 +56,10 @@
 
     }
 
+    function total() {
+      return $this->connexion->query('SELECT COUNT(*) FROM revue')->fetchColumn();
+    }
+
     function ajouter($numero, $isSpecial) {
       $prep = null;
       $revue = null;

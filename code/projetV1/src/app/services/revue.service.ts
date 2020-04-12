@@ -21,6 +21,10 @@ export class RevueService {
     return this.http.get<Revue[]>(environment.apiURL);
   }
 
+  total(): Observable<number> {
+    return this.http.get<number>(`${environment.apiURL}?total=true`);
+  }
+
   ajouter(revue: Revue): Observable<boolean> {
     return this.http.post<boolean>(`${environment.apiURL}`, revue);
   }

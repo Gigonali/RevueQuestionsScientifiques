@@ -13,11 +13,14 @@
   $RevueManager = new RevueManager($connexion);
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['id'])) $idToGet = $_GET['id'];
-    else  $idToGet = null;
-    if ($idToGet != null) {
-      echo json_encode($RevueManager->get($idToGet));
-    } else echo json_encode($RevueManager->getAll());
+    if (isset($_GET['total'])) {
+      echo json_encode($RevueManager->total());
+    } else {
+      if (isset($_GET['id'])) {
+        $idToGet = $_GET['id'];
+        echo json_encode($RevueManager->get($idToGet));
+      } else echo json_encode($RevueManager->getAll());
+    }
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $revueJSON = json_decode(file_get_contents('php://input'), true);
