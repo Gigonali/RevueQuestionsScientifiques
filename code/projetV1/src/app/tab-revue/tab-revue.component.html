@@ -17,10 +17,10 @@
       <tr *ngFor="let revue of listRevues">
         <td class="text-center">{{revue.numero}}</td>
         <td class="text-center"><i class="fas"
-               [ngClass]="{'fa-check':revue.specialHELHa, 'fa-times':!revue.specialHELHa}" ></i></td>
+               [ngClass]="{'divHover fa-check':revue.specialHELHa, 'fa-times':!revue.specialHELHa}"></i></td>
         <td class="text-right align-middle">
           <!-- bouton pour modifier une revue -->
-          <span class="align-middle mr-2" id="modifierRevue" (click)="openSm(modifier)"><i class="fas fa-edit"></i></span>
+          <span class="divHover align-middle mr-2" id="modifierRevue" (click)="openSm(modifier)"><i class="fas fa-edit"></i></span>
           <ng-template #modifier let-modal>
             <div class="modal-header text-center">
               <h4 class="modal-title">Modification</h4>
@@ -44,14 +44,14 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click')">Confirmer</button>
+              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); modifierRevue(revue)">Confirmer</button>
               <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
             </div>
           </ng-template>
           <!-- bouton pour modifier une revue -->
 
           <!-- bouton pour supprimer une revue -->
-          <span class="align-middle" id="deleteRevue" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
+          <span class="divHover align-middle" id="deleteRevue" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
           <ng-template #delete let-modal>
             <div class="modal-header text-center">
               <h4 class="modal-title">Attention !</h4>
@@ -63,7 +63,7 @@
               <p>Êtes-vous sûr de vouloir effacer cette revue ?</p>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click')">Confirmer</button>
+              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); deleteRevue(revue.id)">Confirmer</button>
               <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
             </div>
           </ng-template>
