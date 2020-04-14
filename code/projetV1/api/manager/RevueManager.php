@@ -15,6 +15,7 @@
         $sql = "SELECT * FROM revue WHERE `id`=idRevue VALUES(:idRevue)";
         $prep = $this->connexion->prepare($sql);
         $prep->bindValue(':idRevue', $idRevue, PDO::PARAM_INT);
+        $prep->execute();
         $result = $prep->fetch(PDO::FETCH_ASSOC);
 
         $revue = new Revue($result);
@@ -38,6 +39,7 @@
       try {
         $sql = "SELECT * FROM revue";
         $prep = $this->connexion->prepare($sql);
+        $prep->execute();
         $result = $prep->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($result as $revueDB) {
@@ -68,6 +70,7 @@
       $sql = "SELECT * FROM revue WHERE `numero`=numeroRevue VALUES(:numeroRevue)";
       $prep = $this->connexion->prepare($sql);
       $prep->bindValue(':numeroRevue', $numero, PDO::PARAM_INT);
+      $prep->execute();
       $result = $prep->fetchAll(PDO::FETCH_ASSOC);
 
       if (!$result) {
