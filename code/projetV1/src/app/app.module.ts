@@ -33,6 +33,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 // Service
 import { PersonnesService } from './services/personnes.service';
+import { AuthentificationService } from './authentification.service';
+import { EncryptionService } from './encryption.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { PersonnesService } from './services/personnes.service';
     HttpClientModule,
   ],
   providers: [
-    PersonnesService
+    PersonnesService,
+    AuthentificationService,
+    EncryptionService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,7 +15,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-user"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com">
+                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com" [(ngModel)]="this.authentifiant.mailCo" [ngModelOptions]="{ standalone: true }">
                 </div>
               </div>
               <div class="form-group">
@@ -24,7 +24,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-key"></i></div>
                   </div>
-                  <input type="password" class="form-control" placeholder="Mot de passe">
+                  <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="this.mdp" [ngModelOptions]="{ standalone: true }">
                 </div>
                 <div class="text-center"><a href="#">Mot de passe oublié ?</a></div>
               </div>

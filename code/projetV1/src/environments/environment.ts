@@ -4,6 +4,7 @@
 
 export const environment = {
   apiURL: 'http://localhost/www/...',
+  apiAuthentification: 'http://localhost/projetV1/api/Authentification.php',
   production: false
 };
 
