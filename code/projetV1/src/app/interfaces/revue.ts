@@ -1,6 +1,6 @@
 export interface Revue {
-  id: number;
-  numero: number;
-  specialHELHa: boolean;
+  id_rev: number;
+  numero_rev: number;
+  special_helha_rev: number;
 
 }

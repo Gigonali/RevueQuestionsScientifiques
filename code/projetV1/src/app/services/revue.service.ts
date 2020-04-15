@@ -25,13 +25,14 @@ export class RevueService {
     return this.http.get<number>(`${environment.apiURL}?total=true`);
   }
 
-  ajouter(revue: Revue): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.apiURL}`, revue);
+  ajouter(revue: Revue): Observable<any> {
+    console.log(revue);
+    return this.http.put<any>(`${environment.apiURL}`, revue);
   }
 
 
-  modifier(revue: Revue): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.apiURL}`, revue);
+  modifier(revue: Revue): Observable<any> {
+    return this.http.post<any>(environment.apiURL, revue);
   }
 
   delete(id: number): Observable<any> {

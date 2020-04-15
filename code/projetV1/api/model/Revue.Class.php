@@ -1,16 +1,14 @@
 <?php
 
   class Revue implements JsonSerializable {
-    private $id;
-    private $numero;
-    private $specialHELHa;
+    private $id_rev;
+    private $numero_rev;
+    private $special_helha_rev;
 
     // Constructeur
     public function __construct($data){
       if(is_array($data)){
-        $this -> fillObject($data);
-      } else {
-        throw new Exception($error);
+        $this->fillObject($data);
       }
 
     }
@@ -24,30 +22,25 @@
     }
 
     // Setter
-    public function setNumero($nNum) {
-      return $this->$numero = $nNum;
-    }
-
-    public function setSpecialHELHa($isSpecial) {
-      return $this->$isSpecial;
+    public function __set($property, $value) {
+      $this->$property = $value;
     }
 
     //hydratation
     public function fillObject(array $data){
       foreach($data as $key =>$value){
-          $method = "set".ucfirst($key);
-
-          if(method_exists($this,$method)){
-              $this->$method($value);
-          }
+        $method="__set";
+        if(method_exists($this,$method)){
+            $this->$method($key,$value);
+        }
       }
     }
 
     // JSON serialize
     public function jsonSerialize() {
-      return [ 'id' => $this->__get('id'),
-               'numero' => $this->__get('numero'),
-               'specialHELHa' => $this->__get('specialHELHa')
+      return [ 'id_rev' => $this->__get('id_rev'),
+               'numero_rev' => $this->__get('numero_rev'),
+               'special_helha_rev' => $this->__get('special_helha_rev')
               ];
     }
 

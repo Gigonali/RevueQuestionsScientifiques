@@ -12,7 +12,7 @@
       $revue = null;
 
       try {
-        $sql = "SELECT * FROM revue WHERE `id`=idRevue VALUES(:idRevue)";
+        $sql = "SELECT * FROM revue WHERE `id_rev`=:idRevue";
         $prep = $this->connexion->prepare($sql);
         $prep->bindValue(':idRevue', $idRevue, PDO::PARAM_INT);
         $prep->execute();
@@ -37,7 +37,7 @@
       $revues = array();
 
       try {
-        $sql = "SELECT * FROM revue";
+        $sql = "SELECT * FROM revue ORDER BY numero_rev";
         $prep = $this->connexion->prepare($sql);
         $prep->execute();
         $result = $prep->fetchAll(PDO::FETCH_ASSOC);
@@ -62,23 +62,22 @@
       return $this->connexion->query('SELECT COUNT(*) FROM revue')->fetchColumn();
     }
 
-    function ajouter($numero, $isSpecial) {
+    function ajouter($revue) {
       $prep = null;
-      $revue = null;
 
       // vérifie si elle n'existe pas déjà
-      $sql = "SELECT * FROM revue WHERE `numero`=numeroRevue VALUES(:numeroRevue)";
+      $sql = "SELECT * FROM revue WHERE `numero_rev`=:numeroRevue";
       $prep = $this->connexion->prepare($sql);
-      $prep->bindValue(':numeroRevue', $numero, PDO::PARAM_INT);
+      $prep->bindValue(':numeroRevue', $revue->__get('numero_rev'), PDO::PARAM_INT);
       $prep->execute();
       $result = $prep->fetchAll(PDO::FETCH_ASSOC);
 
       if (!$result) {
         try {
-          $sql = "INSERT * FROM revue(id, numero, specialHELHa) VALUES(null, :numero, :specialHELHa)";
+          $sql = "INSERT INTO `revue`(`id_rev`, `numero_rev`, `special_helha_rev`) VALUES (NULL, :numero, :specialHELHa)";
           $prep = $this->connexion->prepare($sql);
-          $prep->bindValue(':numero', $numero, PDO::PARAM_INT);
-          $prep->bindValue(':specialHELHa', $isSpecial, PDO::PARAM_BOOL);
+          $prep->bindValue(':numero', $revue->__get('numero_rev'), PDO::PARAM_INT);
+          $prep->bindValue(':specialHELHa', $revue->__get('special_helha_rev'), PDO::PARAM_BOOL);
           $result = $prep->execute();
 
         } catch (PDOException $e) {
@@ -96,14 +95,13 @@
     function modifier($revue) {
       $prep = null;
       $result = null;
-      $revue = null;
 
       try {
-        $sql = "UPDATE * FROM revue SET(numero, specialHELHa) VALUES(:numero, :specialHELHa) WHERE `id`=idRevue VALUES(:id)";
+        $sql = "UPDATE revue SET `numero_rev`=:numero, `special_helha_rev`=:specialHELHa WHERE `id_rev`=:idRevue";
         $prep = $this->connexion->prepare($sql);
-        $prep->bindValue(':id', $idRevue, PDO::PARAM_INT);
-        $prep->bindValue(':numero', $numero, PDO::PARAM_INT);
-        $prep->bindValue(':specialHELHa', $isSpecial, PDO::PARAM_BOOL);
+        $prep->bindValue(':idRevue', $revue->__get('id_rev'), PDO::PARAM_INT);
+        $prep->bindValue(':numero', $revue->__get('numero_rev'), PDO::PARAM_INT);
+        $prep->bindValue(':specialHELHa', $revue->__get('special_helha_rev'), PDO::PARAM_BOOL);
         $result = $prep->execute();
 
       } catch (PDOException $e) {
@@ -117,14 +115,14 @@
 
     }
 
-    function supprimer($idRevue) {
+    function supprimer($id_revRevue) {
       $prep = null;
       $result = null;
 
       try {
-        $sql = "DELETE FROM revue WHERE `id`=idRevue VALUES(:idRevue)";
+        $sql = "DELETE FROM revue WHERE `id_rev`=:idRevue";
         $prep = $this->connexion->prepare($sql);
-        $prep->bindValue(':idRevue', $idRevue, PDO::PARAM_INT);
+        $prep->bindValue(':idRevue', $id_revRevue, PDO::PARAM_INT);
         $result = $prep->execute();
 
       } catch (PDOException $e) {

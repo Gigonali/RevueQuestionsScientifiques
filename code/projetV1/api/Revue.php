@@ -10,31 +10,31 @@
 
   $dbManager = new DBManager();
   $connexion = $dbManager->connect();
-  $RevueManager = new RevueManager($connexion);
+  $revueManager = new RevueManager($connexion);
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['total'])) {
-      echo json_encode($RevueManager->total());
+      echo json_encode($revueManager->total());
     } else {
       if (isset($_GET['id'])) {
         $idToGet = $_GET['id'];
-        echo json_encode($RevueManager->get($idToGet));
-      } else echo json_encode($RevueManager->getAll());
+        echo json_encode($revueManager->get($idToGet));
+      } else echo json_encode($revueManager->getAll());
     }
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $revueJSON = json_decode(file_get_contents('php://input'), true);
     $revue = new Revue($revueJSON);
-    if ($revue->id != null) {
-      echo json_encode($RevueManager->modifier());
-    } else echo json_encode($RevueManager->ajouter());
+    echo json_encode($revueManager->modifier($revue));
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-    echo 'not implemented yet';
+    $revueJSON = json_decode(file_get_contents('php://input'), true);
+    $revue = new Revue($revueJSON);
+    echo json_encode($revueManager->ajouter($revue));
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $idToDelete = $_GET['id'];
-    echo $contactManager->delete($idToDelete);
+    echo $revueManager->supprimer($idToDelete);
 
   }
 
