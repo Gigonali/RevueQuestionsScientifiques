@@ -30,11 +30,14 @@ import { TabMaintenanceComponent } from './tab-maintenance/tab-maintenance.compo
 import { TabParametredeconnexionComponent } from './tab-parametredeconnexion/tab-parametredeconnexion.component';
 import { AccueilAdminGestioComponent } from './accueil-admin-gestio/accueil-admin-gestio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TabRevueComponent } from './tab-revue/tab-revue.component';
 
 // Service
 import { PersonnesService } from './services/personnes.service';
+import { RevueService } from './services/revue.service';
 import { AuthentificationService } from './authentification.service';
 import { EncryptionService } from './encryption.service';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ import { EncryptionService } from './encryption.service';
     TabMaintenanceComponent,
     TabParametredeconnexionComponent,
     AccueilAdminGestioComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TabRevueComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,7 @@ import { EncryptionService } from './encryption.service';
   ],
   providers: [
     PersonnesService,
+    RevueService,
     AuthentificationService,
     EncryptionService
   ],
