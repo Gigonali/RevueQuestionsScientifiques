@@ -24,7 +24,6 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.0",
     "@popperjs/core": "^2.1.0",
     "angular-crypto-js": "^1.0.7",
-    "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "crypto-js": "^4.0.0",

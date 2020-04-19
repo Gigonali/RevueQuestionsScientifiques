@@ -5,7 +5,7 @@
 export const environment = {
   //apiURL: 'http://localhost/www/...',
   //apiAuthentification: 'http://localhost/projetV1/api/Authentification.php',
-  apiReinitialisation: 'http://localhost/projetV1/api/Reinitialisation.php',
+  apiReinitialisation: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Reinitialisation.php',
   apiURL: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Revue.php',
   apiAuthentification: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Authentification.php',
   production: false
