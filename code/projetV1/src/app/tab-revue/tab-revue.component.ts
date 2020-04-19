@@ -35,7 +35,7 @@ export class TabRevueComponent implements OnInit {
 
   ajouterRevue(revue: Revue) {
       const sub = this.revueService.ajouter(revue)
-      .subscribe(data => {
+      .subscribe(revues => {
         this.refreshRevues();
         sub.unsubscribe();
       });

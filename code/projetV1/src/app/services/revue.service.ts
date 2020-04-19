@@ -26,7 +26,6 @@ export class RevueService {
   }
 
   ajouter(revue: Revue): Observable<any> {
-    console.log(revue);
     return this.http.put<any>(`${environment.apiURL}`, revue);
   }
 
