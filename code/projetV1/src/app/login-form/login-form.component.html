@@ -24,9 +24,9 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-key"></i></div>
                   </div>
-                  <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="this.mdp" [ngModelOptions]="{ standalone: true }">
+                  <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="this.authentifiant.mdp" [ngModelOptions]="{ standalone: true }">
                 </div>
-                <div class="text-center"><a href="#">Mot de passe oublié ?</a></div>
+                <div class="text-center"><a href="#" routerLink='/reinitialisation'>Mot de passe oublié ?</a></div>
               </div>
               <button (click)="onSignIn()" type="submit" class="btn btn-lg btn-block btn-primary mb-4">Connexion <i class="fas fa-sign-in-alt"></i></button>
             </form>

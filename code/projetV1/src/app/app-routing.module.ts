@@ -6,6 +6,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { GestioHomeComponent } from './gestio-home/gestio-home.component';
 import { AuthorHomeComponent } from './author-home/author-home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReinitialitionMdpComponent } from './reinitialition-mdp/reinitialition-mdp.component';
 
 
 const appRoutes: Routes = [
@@ -14,6 +15,8 @@ const appRoutes: Routes = [
   { path: 'gestio', component: GestioHomeComponent},
   { path: 'auteur', component: AuthorHomeComponent},
   { path: '', redirectTo: 'connexion', pathMatch: 'full'},
+  { path: 'reinitialisation', component: ReinitialitionMdpComponent},
+  { path: 'reinitialisation/:email/:code', component: ReinitialitionMdpComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
 

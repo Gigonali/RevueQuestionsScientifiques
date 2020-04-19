@@ -35,8 +35,9 @@ import { TabRevueComponent } from './tab-revue/tab-revue.component';
 // Service
 import { PersonnesService } from './services/personnes.service';
 import { RevueService } from './services/revue.service';
-import { AuthentificationService } from './authentification.service';
-import { EncryptionService } from './encryption.service';
+import { AuthentificationService } from './services/authentification.service';
+import { ReinitialitionMdpComponent } from './reinitialition-mdp/reinitialition-mdp.component';
+import { ReinitialisationService } from './services/reinitialisation.service';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { EncryptionService } from './encryption.service';
     TabParametredeconnexionComponent,
     AccueilAdminGestioComponent,
     PageNotFoundComponent,
-    TabRevueComponent
+    TabRevueComponent,
+    ReinitialitionMdpComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,7 @@ import { EncryptionService } from './encryption.service';
     PersonnesService,
     RevueService,
     AuthentificationService,
-    EncryptionService
+    ReinitialisationService
   ],
   bootstrap: [AppComponent]
 })

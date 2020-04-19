@@ -1,0 +1,38 @@
+<div class="mx-auto align-middle" style="width: 500px;">
+  <div>
+    <div *ngIf=!vueMdp  class="login-form">
+          <form>
+            <div class="form-group">
+              <label>Adresse e-mail</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com" [(ngModel)]="this.email" [ngModelOptions]="{ standalone: true }">
+              </div>
+            </div>
+            <button (click)="reinitialiser()" type="submit"  class="btn btn-lg btn-block btn-primary mb-4">Envoyer mail de reinitialisation <i class="fas fa-sign-in-alt"></i></button>
+          </form>
+        </div>
+        <div *ngIf=vueMdp>
+          <form>
+            <div class="form-group">
+              <label>Nouveau mot de passe</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="inlineFormInputGroup" [(ngModel)]="this.mdp" [ngModelOptions]="{ standalone: true }">
+              </div>
+              <label>Confirmer mot de passe</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="inlineFormInputGroup" [(ngModel)]="this.mdpconfirm" [ngModelOptions]="{ standalone: true }">
+              </div>
+            </div>
+            <div *ngIf="mdp!=mdpconfirm" class="alert alert-danger" role="alert">
+              Mots de passe différents
+            </div>
+            <button *ngIf="mdp==mdpconfirm" (click)="modifier()" type="submit" class="btn btn-lg btn-block btn-primary mb-4">Modifier le mot de passe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+

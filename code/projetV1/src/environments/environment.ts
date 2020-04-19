@@ -5,6 +5,7 @@
 export const environment = {
   apiURL: 'http://localhost/www/...',
   apiAuthentification: 'http://localhost/projetV1/api/Authentification.php',
+  apiReinitialisation: 'http://localhost/projetV1/api/Reinitialisation.php',
   production: false
 };
 

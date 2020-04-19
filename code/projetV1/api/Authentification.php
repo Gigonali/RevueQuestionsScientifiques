@@ -15,9 +15,9 @@ $authManager = new AuthentificationManager($connexion);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $authentifiantJSON = json_decode(file_get_contents('php://input'), true);
-  $answer=$authManager->connecter($authentifiantJSON['mailCo'],$authentifiantJSON['hashMdp']);
-    if($answer){  //mail et mot de passe correspondent à un User
-      switch ($authManager->getPermission($answer)) {
+  $answer=$authManager->connecter($authentifiantJSON['mailCo'],$authentifiantJSON['mdp']);
+    if(is_array($answer) && password_verify($authentifiantJSON['mdp'],$answer['hashMdp'])){  //mail et mot de passe correspondent à un User
+      switch ($authManager->getPermission($answer['id'])) {
         case 'GESTIONNAIRE':
           echo "1";
           break;
@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           echo "2";
           break;
         default:
-          if($authManager->isAuteur($answer)){
+          if($authManager->isAuteur($answer['id'])){
             echo "3";
           }
         break;

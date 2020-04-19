@@ -11,10 +11,9 @@ class AuthentificationManager{
       $prep = null;
       $result = false;
       try {
-        $sql = "SELECT COUNT(1) as answer, id_pers as id FROM personne WHERE mail_connexion_pers= :mail AND mdp_pers= :mdp";
+        $sql = "SELECT COUNT(1) as answer, id_pers as id, mdp_pers as hashMdp FROM personne WHERE mail_connexion_pers= :mail";
         $prep = $this->connexion->prepare($sql);
         $prep->bindValue(':mail', $mailCo, PDO::PARAM_STR);
-        $prep->bindValue(':mdp', addslashes($hashMdp), PDO::PARAM_STR);
         $prep->execute();
         $result = $prep->fetchAll(PDO::FETCH_ASSOC);
       } catch (PDOException $e) {
@@ -24,7 +23,7 @@ class AuthentificationManager{
         $prep = null;
       }
       if ($result[0]["answer"]) {
-        return $result[0]["id"]; //FOUND
+        return $result[0]; //FOUND
       } else {
         return $result[0]["answer"]; //NOT FOUND
       }
