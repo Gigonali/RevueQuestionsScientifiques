@@ -18,6 +18,7 @@ export class TabRevueComponent implements OnInit {
   listRevues: Array<Revue>;
   revuesObs$: Observable<Revue[]>;
   ajoutRevue: Revue = {id_rev: 0, numero_rev: 0, special_helha_rev: 3};
+  revueMod: Revue;
 
   constructor(private revueService: RevueService, private modalService: NgbModal) { }
 
@@ -59,6 +60,11 @@ export class TabRevueComponent implements OnInit {
   }
 
   // affiche modal
+  openSmModif(content, object: Revue) {
+    this.revueMod = {id_rev: object.id_rev, numero_rev: object.numero_rev, special_helha_rev: object.special_helha_rev};
+    this.openSm(content);
+  }
+
   openSm(content) {
     this.modalService.open(content, { size: 'sm' });
   }
