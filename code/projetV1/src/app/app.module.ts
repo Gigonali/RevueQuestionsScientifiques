@@ -31,6 +31,7 @@ import { TabParametredeconnexionComponent } from './tab-parametredeconnexion/tab
 import { AccueilAdminGestioComponent } from './accueil-admin-gestio/accueil-admin-gestio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TabRevueComponent } from './tab-revue/tab-revue.component';
+import { TabDomainesComponent } from './tab-domaines/tab-domaines.component';
 
 // Service
 import { PersonnesService } from './services/personnes.service';
@@ -38,6 +39,7 @@ import { RevueService } from './services/revue.service';
 import { AuthentificationService } from './services/authentification.service';
 import { ReinitialitionMdpComponent } from './reinitialition-mdp/reinitialition-mdp.component';
 import { ReinitialisationService } from './services/reinitialisation.service';
+import { DomaineService } from './services/domaine.service';
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { ReinitialisationService } from './services/reinitialisation.service';
     AccueilAdminGestioComponent,
     PageNotFoundComponent,
     TabRevueComponent,
+    TabDomainesComponent,
     ReinitialitionMdpComponent
   ],
   imports: [
@@ -80,7 +83,8 @@ import { ReinitialisationService } from './services/reinitialisation.service';
     PersonnesService,
     RevueService,
     AuthentificationService,
-    ReinitialisationService
+    ReinitialisationService,
+    DomaineService,
   ],
   bootstrap: [AppComponent]
 })
