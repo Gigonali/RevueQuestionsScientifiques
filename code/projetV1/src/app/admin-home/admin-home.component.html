@@ -142,6 +142,11 @@
             <!-- Liste personnes -->
           <!-- Personnes -->
 
+          <!-- Domaines -->
+          <a href="admin#domaines" (click)="changeTab('domaines')"
+            class="list-group-item list-group-item-action itemHover"
+            [ngClass]="{'active':tabSelected === 'domaines' }">Domaines</a>
+
           <!-- Éditeurs -->
           <a href="admin#editeurs" (click)="changeTab('editeurs')"
             class="list-group-item list-group-item-action itemHover"
@@ -232,6 +237,9 @@
           <div *ngSwitchCase="'personnesExperts'"><app-tab-personnes></app-tab-personnes></div>
           <div *ngSwitchCase="'personnesDivers'"><app-tab-personnes></app-tab-personnes></div>
           <!-- Personnes -->
+
+          <!-- Domaines -->
+          <div *ngSwitchCase="'domaines'"><app-tab-domaine></app-tab-domaine></div>
 
           <!-- Éditeurs -->
           <div *ngSwitchCase="'editeurs'"><app-tab-editeurs></app-tab-editeurs></div>
