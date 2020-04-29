@@ -39,15 +39,22 @@ export class TabEditeursComponent implements OnInit {
     const sub = this.maisonEditionService.ajouter(me)
     .subscribe(maisonEditions => {
       this.refreshMaisonEditions();
+      this.initAjoutME();
       sub.unsubscribe();
     });
     // this.ajoutMaisonEdition;
+  }
+
+  initAjoutME(){
+    this.ajoutMaisonEdition = {id: 0, nom: '', nomClassement: '', nomCorrespondant: '', mailCorrespondant: '', adrNumero: '',
+    adrRue: '', adrCp: '', adrVille: '', adrPays: ''};
   }
 
   modifierMaisonEdition(me: MaisonEdition) {
     const sub = this.maisonEditionService.modifier(me)
     .subscribe(maisonEditions => {
       this.refreshMaisonEditions();
+      this.initAjoutME();
       sub.unsubscribe();
     });
   }
@@ -69,11 +76,29 @@ export class TabEditeursComponent implements OnInit {
   }
 
   openSm(content) {
-    this.modalService.open(content, { size: 'sm' });
+    this.modalService.open(content, { size: 'lg' });
   }
 
   onCancel(modal: any) {
     modal.close('Close click');
+    this.initAjoutME();
+  }
+
+  fillMeForModif(id: number) {
+    this.listeMaisonEditions.forEach(me => {
+      if (me.id === id) {
+        this.ajoutMaisonEdition.id = me.id;
+        this.ajoutMaisonEdition.nom = me.nom;
+        this.ajoutMaisonEdition.nomCorrespondant = me.nomCorrespondant;
+        this.ajoutMaisonEdition.mailCorrespondant = me.mailCorrespondant;
+        this.ajoutMaisonEdition.nomClassement = me.nomClassement;
+        this.ajoutMaisonEdition.adrCp = me.adrCp;
+        this.ajoutMaisonEdition.adrPays = me.adrPays;
+        this.ajoutMaisonEdition.adrRue = me.adrRue;
+        this.ajoutMaisonEdition.adrNumero = me.adrNumero;
+        this.ajoutMaisonEdition.adrVille = me.adrVille;
+      }
+    });
   }
 
 }

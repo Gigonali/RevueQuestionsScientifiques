@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
   $maisonEditionJSON = json_decode(file_get_contents('php://input'), true);
   $maisonEdition = new MaisonEdition($maisonEditionJSON);
-  echo json_encode($maisonEdition);
   echo json_encode($maisonEditionManager->ajouter($maisonEdition));
 } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
   $idToDelete = $_GET['id'];

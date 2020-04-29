@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabLivresComponent implements OnInit {
 
+  //public listEditeur: Editeur[];
+
   constructor() { }
 
   ngOnInit(): void {

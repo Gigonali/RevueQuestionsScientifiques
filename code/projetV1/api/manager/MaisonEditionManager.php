@@ -28,7 +28,6 @@ class MaisonEditionManager {
         $sql = "SELECT * FROM maison_edition";
 
         $q = $this->connexion->query($sql);
-
         $liste = array();
         while($data = $q->fetch(PDO::FETCH_ASSOC)) {
           array_push($liste, new MaisonEdition($data));
@@ -44,7 +43,7 @@ class MaisonEditionManager {
     public function ajouter(MaisonEdition $me) {
       try {
         $sql = "INSERT INTO maison_edition(id_mai, nom_mai, nom_classement_mai, nom_correspondant_mai, mail_correspondant_mai,
-                adr_numero_mai, adr_rue_mai, adr_cp_mai, adr_ville_mai, adr_pays_mai)
+                adr_adr_numero, adr_adr_rue, adr_adr_cp, adr_adr_ville, adr_adr_pays)
                 VALUES(NULL, :nom, :nomClassement, :nomCorrespondant, :mailCorrespondant, :adrNumero, :adrRue, :adrCp, :adrVille,
                 :adrPays)";
 
@@ -72,8 +71,8 @@ class MaisonEditionManager {
       try {
         $sql = "UPDATE maison_edition SET nom_mai = :nom, nom_classement_mai = :nomClassement,
                 nom_correspondant_mai = :nomCorrespondant, mail_correspondant_mai = :mailCorrespondant,
-                adr_numero_mai = :adrNumero, adr_rue_mai = : adrRue, adr_cp_mai = adrCp, adr_ville_mai = adrVille,
-                adr_pays_mai = adrPays WHERE id_mai = :id";
+                adr_adr_numero = :adrNumero, adr_adr_rue = :adrRue, adr_adr_cp = :adrCp, adr_adr_ville = :adrVille,
+                adr_adr_pays = :adrPays WHERE id_mai = :id";
 
         $q = $this->connexion->prepare($sql);
         $q->bindValue(':nom', $me->nom, PDO::PARAM_STR);
