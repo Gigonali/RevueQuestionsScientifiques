@@ -1,1 +1,96 @@
-<p>tab-editeurs works!</p>
+<div class="container-fluid card rounded">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="4">
+          <h2>Éditeurs | Liste complète</h2>
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <th class="text-center" scope="col">Nom</th>
+        <th class="text-center" scope="col">Correspondant</th>
+        <th class="text-center" scope="col">Adresse</th>
+        <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter un éditeur<i class="fas fa-plus-square"></i></button></th>
+        <!-- bouton pour ajouter un éditeur -->
+        <ng-template #ajouter let-modal>
+          <div class="modal-header text-center">
+            <h4 class="modal-title">Ajout</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="ajoutNom">Nom</label>
+                <input [(ngModel)]="ajoutMaisonEdition.nom" type="text" class="form-control" id="ajoutNom">
+                <label for="ajoutNomClassement">Nom de classement</label>
+                <input [(ngModel)]="ajoutMaisonEdition.nomClassement" type="text" class="form-control" id="ajoutNomClassement">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutNomCorrespondant">Nom correspondant</label>
+                <input [(ngModel)]="ajoutMaisonEdition.nomCorrespondant" type="text" class="form-control" id="ajoutNomCorrespondant">
+                <label for="ajoutMailCorrespondant">Mail correspondant</label>
+                <input [(ngModel)]="ajoutMaisonEdition.mailCorrespondant" type="text" class="form-control" id="ajoutMailCorrespondant">
+              </div>
+              <div class="form-group col-md-6">
+                <p>Adresse</p>
+                <label for="ajoutAdrNumero">Numero</label>
+                <input [(ngModel)]="ajoutMaisonEdition.adrNumero" type="text" class="form-control" id="ajoutAdrNumero">
+                <label for="ajoutAdrRue">Rue</label>
+                <input [(ngModel)]="ajoutMaisonEdition.adrRue" type="text" class="form-control" id="ajoutAdrRue">
+                <label for="ajoutAdrCp">Code postal</label>
+                <input [(ngModel)]="ajoutMaisonEdition.adrCp" type="text" class="form-control" id="ajoutAdrCp">
+                <label for="ajoutAdrVille">Ville</label>
+                <input [(ngModel)]="ajoutMaisonEdition.adrVille" type="text" class="form-control" id="ajoutAdrVille">
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-secondary">Ajouter éditeurs<i class="fas fa-plus-square"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); ajouterMaisonEdition(ajoutMaisonEdition)">Ajouter</button>
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+          </div>
+        </ng-template>
+        <!-- bouton pour ajouter un éditeur -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- récupère tous les éditeurs dans la db -->
+      <tr *ngFor="let me of listeMaisonEditions">
+        <td class="text-center">{{me.nom}}</td>
+        <!--
+        <td class="text-center">
+          <i class="fas" [ngClass]="{'fa-check':me.special_helha_rev == 1, 'fa-times':revue.special_helha_rev == 0}"></i>
+        </td> -->
+        <td class="text-right align-middle">
+          <!-- bouton pour modifier un éditeur -->
+
+          <!-- bouton pour modifier un éditeur -->
+
+          <!-- bouton pour supprimer un éditeur -->
+          <span class="divHover align-middle" id="deleteMaisonEdition" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
+          <ng-template #delete let-modal>
+            <div class="modal-header text-center">
+              <h4 class="modal-title">Attention !</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Êtes-vous sûr de vouloir effacer cet éditeur ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); deleteMaisonEdition(me.id)">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+          <!-- bouton pour supprimer un éditeur -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,11 +1,12 @@
-import { AdressePostale } from './adresse-postale';
-
 export interface MaisonEdition {
   id: number;
   nom: string;
   nomClassement: string;
   nomCorrespondant?: string;
   mailCorrespondant?: string;
-  adresse?: AdressePostale;
-
+  adrNumero?: string;
+  adrRue?: string;
+  adrCp?: string;
+  adrVille?: string;
+  adrPays?: string;
 }

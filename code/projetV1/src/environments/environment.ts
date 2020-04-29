@@ -8,6 +8,8 @@ export const environment = {
   apiReinitialisation: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Reinitialisation.php',
   apiURL: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Revue.php',
   apiAuthentification: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Authentification.php',
+  apiMaisonEdition: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/MaisonEdition.php',
+  apiLivre: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Livre.php',
   production: false
 };
 
