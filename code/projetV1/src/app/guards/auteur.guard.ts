@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Authentifiant } from './authentifiant';
-import { AuthentificationService } from './services/authentification.service';
+// services
+import { AuthentificationService } from '../services/authentification.service';
+// interfaces
+import { Authentifiant } from '../interfaces/authentifiant';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GestionnaireGuard implements CanActivate {
+export class AuteurGuard implements CanActivate {
   auth: Authentifiant;
   sub: Subscription;
 
@@ -17,7 +19,7 @@ export class GestionnaireGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this.auth = JSON.parse(localStorage.getItem('auth'));
     this.sub = this.authService.connecter(this.auth).subscribe( result => {
-      if (result === 1 ) {
+      if (result === 3 ) {
         this.sub.unsubscribe();
         return true;
       } else {

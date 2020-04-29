@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReinitialisationService } from '../services/reinitialisation.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Authentifiant } from '../authentifiant';
 import { Subscription } from 'rxjs';
+// interfaces
+import { Authentifiant } from '../interfaces/authentifiant';
 
 @Component({
   selector: 'app-reinitialition-mdp',

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
-// Component
+// Components
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -33,7 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TabRevueComponent } from './tab-revue/tab-revue.component';
 import { TabDomainesComponent } from './tab-domaines/tab-domaines.component';
 
-// Service
+// Services
 import { PersonnesService } from './services/personnes.service';
 import { RevueService } from './services/revue.service';
 import { AuthentificationService } from './services/authentification.service';
