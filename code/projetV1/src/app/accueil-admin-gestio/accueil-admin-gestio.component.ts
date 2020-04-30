@@ -27,11 +27,4 @@ export class AccueilAdminGestioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // formater date
-  formatDate(tempDate: Date) {
-    this.stringDate = tempDate.getDate() + '/' + tempDate.getMonth().toLocaleString('fr-BE') + '/' + tempDate.getFullYear();
-
-    return this.stringDate;
-  }
-
 }
