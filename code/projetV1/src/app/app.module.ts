@@ -70,7 +70,7 @@ import { DomaineService } from './services/domaine.service';
     PageNotFoundComponent,
     TabRevueComponent,
     TabDomainesComponent,
-    ReinitialitionMdpComponent
+    ReinitialitionMdpComponent,
   ],
   imports: [
     BrowserModule,

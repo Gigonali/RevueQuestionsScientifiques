@@ -8,8 +8,8 @@
         <th></th>
       </tr>
       <tr>
-        <th class="text-center" scope="col">Numéro</th>
-        <th class="text-center" scope="col">Spéciale HELHa</th>
+        <th class="divHover text-center" scope="col" (click)="sortBy(!sortByMemo.numero, sortByMemo.isSpecialHelha)">Numéro</th>
+        <th class="divHover text-center" scope="col" (click)="sortBy(sortByMemo.numero, sortByMemo.isSpecialHelha)">Spéciale HELHa</th>
         <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter une revue <i class="fas fa-plus-square"></i></button></th>
         <!-- bouton pour ajouter une revue -->
         <ng-template #ajouter let-modal>
@@ -28,7 +28,6 @@
               <div class="form-group col-md-6">
                 <label for="ajoutSpe">Spéciale HELHa</label>
                 <select [(ngModel)]="ajoutRevue.special_helha_rev" id="ajoutSpe" class="form-control">
-                  <option [selected]="true" value="3">-- Options --</option>
                   <option value="1">Oui</option>
                   <option value="0">Non</option>
                 </select>
@@ -36,11 +35,12 @@
               <div class="form-group">
                 <button type="button" class="btn btn-secondary">Ajouter des publications <i class="fas fa-plus-square"></i></button>
               </div>
+              <div *ngIf="erreur.isError === true" class="alert alert-danger">{{erreur.message}}</div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); ajouterRevue(ajoutRevue)">Ajouter</button>
-            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+            <button type="reset" class="btn btn-danger" (click)="ajouterRevue(modal, ajoutRevue)">Ajouter</button>
+            <button type="button" class="btn btn-secondary" (click)="onCancel(modal)">Annuler</button>
           </div>
         </ng-template>
         <!-- bouton pour ajouter une revue -->
@@ -58,7 +58,7 @@
           <ng-template #modifier let-modal>
             <div class="modal-header text-center">
               <h4 class="modal-title">Modification</h4>
-              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -76,10 +76,11 @@
                   </select>
                 </div>
               </div>
+              <div *ngIf="erreur.isError" class="alert alert-danger">{{erreur.message}}</div>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); modifierRevue(revueMod)">Confirmer</button>
-              <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+              <button type="reset" class="btn btn-danger" (click)="modifierRevue(modal, revueMod)">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="onCancel(modal)">Annuler</button>
             </div>
           </ng-template>
           <!-- bouton pour modifier une revue -->
@@ -97,7 +98,7 @@
               <p>Êtes-vous sûr de vouloir effacer cette revue ?</p>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); deleteRevue(revue.id_rev)">Confirmer</button>
+              <button type="reset" class="btn btn-danger" (click)="deleteRevue(modal, revue.id_rev)">Confirmer</button>
               <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
             </div>
           </ng-template>
