@@ -12,5 +12,5 @@ export interface Livre {
   brochure: string;
   responsabiliteEdition?: string;
   responsabiliteTraduction?: string;
-
+  idEtatLivre: number;
 }

@@ -14,7 +14,7 @@ export class PersonnesService {
   constructor(private http: HttpClient) { }
 
   getPersonne(): Observable<Personne[]> {
-    return this.http.get<Personne[]>(environment.apiURL);
+    return this.http.get<Personne[]>(environment.apiPersonne);
   }
 
 }

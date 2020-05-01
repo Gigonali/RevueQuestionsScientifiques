@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthentificationService } from '../services/authentification.service';
-import { Authentifiant } from '../authentifiant';
 import { Subscription } from 'rxjs';
+// services
+import { AuthentificationService } from '../services/authentification.service';
+// interfaces
+import { Authentifiant } from '../interfaces/authentifiant';
 
 @Component({
   selector: 'app-login-form',

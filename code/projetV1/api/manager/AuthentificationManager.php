@@ -49,7 +49,7 @@ class AuthentificationManager{
       }else{
         return false;
       }
-      
+
     }
 
     function getPermission($id){
@@ -68,6 +68,6 @@ class AuthentificationManager{
         $prep = null;
       }
       return $result[0]["perm"];
-      
+
     }
 }
