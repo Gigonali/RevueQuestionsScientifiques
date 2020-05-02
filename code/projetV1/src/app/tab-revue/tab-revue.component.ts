@@ -117,7 +117,7 @@ export class TabRevueComponent implements OnInit {
   openSmModif(content, object: Revue) {
     // initialise la variable pour préremplir les champs
     this.revueMod = {id_rev: object.id_rev, numero_rev: object.numero_rev, special_helha_rev: object.special_helha_rev};
-    // sauvegarde la numero avtuel de la revue
+    // sauvegarde la numero actuel de la revue
     this.currentNumber = object.numero_rev;
     // ouvre le modal
     this.openSm(content);

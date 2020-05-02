@@ -10,7 +10,7 @@ import { Personne } from '../interfaces/personnes';
 })
 export class AdminHomeComponent implements OnInit {
   // données de test
-  testUser: Personne = {id: 0, nom: 'Stoffel', prenom: 'Jean-François', estRescenseur: false, estContact: false };
+  testUser: Personne = {id_pers: 0, nom_pers: 'Stoffel', prenom_pers: 'Jean-François', estRecenseur_pers: 0, estContact_pers: 0};
   // données de test
 
   // données de la personne
