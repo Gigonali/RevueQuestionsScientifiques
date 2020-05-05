@@ -5,8 +5,8 @@
       <table class="table table-striped">
         <tbody>
           <tr *ngFor="let echance of echeances; let index = index" [ngClass]="{'bg-dark text-white': 1 === index%2}">
-            <td class="col-sm-2 text-center">{{echance.date | date: 'dd/LL/yyyy à HH:mm'}}</td>
-            <td class="text-left">{{echance.libelle}}</td>
+            <td class="text-center">{{echance.date | date: 'dd/LL/yyyy à HH:mm'}}</td>
+            <td class="col-sm-2 text-left align-middle">{{echance.libelle}}</td>
           </tr>
         </tbody>
       </table>

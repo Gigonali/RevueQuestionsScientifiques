@@ -13,7 +13,7 @@
   $personneManager = new PersonneManager($connexion);
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    
+
     if (isset($_GET['total'])) {
       echo json_encode($personneManager->total());
     } else {

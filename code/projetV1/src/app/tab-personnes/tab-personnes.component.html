@@ -1,1 +1,137 @@
-<p>tab-personnes works!</p>
+<div class="container-fluid card rounded">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <h2>Personnes | Liste complète</h2>
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <th class="divHover text-center" scope="col">Nom/prénom</th>
+        <th class="divHover text-center" scope="col">Mail</th>
+        <th class="divHover text-center" scope="col">Rôle(s)</th>
+        <th class="divHover text-center" scope="col">Institution</th>
+        <th class="divHover text-center" scope="col">Adresse</th>
+        <th class="divHover text-center" scope="col">Commentaire</th>
+        <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter une personne <i class="fas fa-plus-square"></i></button></th>
+        <!-- bouton pour ajouter une personne -->
+        <ng-template #ajouter let-modal>
+        </ng-template>
+        <!-- bouton pour ajouter une personne -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- récupère toutes les personnes dans la db -->
+      <tr *ngFor="let personne of listePersonnes">
+        <td class="text-center">
+          {{personne.nom_pers | uppercase}} {{personne.prenom_pers | titlecase}}
+        </td>
+        <td class="text-center">{{personne.mail_contact_pers}}</td>
+        <td class="text-center">{{getRolePersonne(personne)}}</td>
+        <td class="text-center">{{personne.institution_courte_pers}}</td>
+        <td class="text-center">
+          {{personne.adr_rue_pers}} {{personne.adr_num_pers}},<br/>
+          {{personne.adr_cp_pers}} {{personne.adr_ville_pers}}<br/>
+          {{personne.adr_pays_pers}}
+        </td>
+        <td class="text-center">{{personne.commentaire_pers}}</td>
+        <td class="text-right align-middle">
+          <!-- bouton pour modifier une personne -->
+          <span class="divHover align-middle mr-2" id="modifierPersonne" (click)="openSmModif(modifier, personne)"><i class="fas fa-edit"></i></span>
+          <ng-template #modifier let-modal>
+            <div class="modal-header text-center">
+              <h4 class="modal-title">Modification</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputNom">Nom</label>
+                  <input [(ngModel)]="personneMod.nom_pers" type="text" class="form-control"
+                          id="inputNom" placeholder="{{personne.nom_pers}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPrenom">Prénom</label>
+                  <input [(ngModel)]="personneMod.prenom_pers" type="text" class="form-control"
+                          id="inputPrenom" placeholder="{{personne.prenom_pers}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMailContact">Mail de contact</label>
+                  <input [(ngModel)]="personneMod.mailContact_pers" type="text" class="form-control"
+                          id="inputMailContact" placeholder="{{personne.mailContact_pers}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMailConnexion">Mail de connexion</label>
+                  <input [(ngModel)]="personneMod.mailConnexion_pers" type="text" class="form-control"
+                          id="inputMailConnexion" placeholder="{{personne.mailConnexion_pers}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputRecenseur">Recenseur</label>
+                  <select [(ngModel)]="personneMod.estRecenseur_pers" id="inputRecenseur" class="form-control">
+                    <option [selected]="personne.estRecenseur == 1" value="1">Oui</option>
+                    <option [selected]="personne.estRecenseur == 0" value="0">Non</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputContact">Contact</label>
+                  <select [(ngModel)]="personneMod.estContact_pers" id="inputContact" class="form-control">
+                    <option [selected]="personne.estContact == 1" value="1">Oui</option>
+                    <option [selected]="personne.estContact == 0" value="0">Non</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputInstitutionCourte">Institution courte</label>
+                  <input [(ngModel)]="personneMod.institutionCourte_pers" type="text" class="form-control"
+                          id="inputInstitutionCourte" placeholder="{{personne.institutionCourte_pers}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputInstitutionLongue">Institution longue</label>
+                  <input [(ngModel)]="personneMod.institutionLongue_pers" type="text" class="form-control"
+                          id="inputInstitutionLongue" placeholder="{{personne.institutionLongue_pers}}">
+                </div>
+                <!-- <div class="form-group col-md-6">
+                  <label for="input">Adresse</label>
+                  <input [(ngModel)]="personneMod.institutionLongue_pers" type="text" class="form-control"
+                          id="input" placeholder="{{personne.institutionLongue_pers}}">
+                </div> -->
+                <div class="form-group col-md-6">
+                  <label for="inputCommentaire">Commentaire</label>
+                  <input [(ngModel)]="personneMod.commentaire_pers" type="text" class="form-control"
+                          id="inputCommentaire" placeholder="{{personne.commentaire_pers}}">
+                </div>
+              </div>
+              <div *ngIf="erreur.isError" class="alert alert-danger">{{erreur.message}}</div>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" (click)="modifierPersonne(modal, personneMod)">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="onCancel(modal)">Annuler</button>
+            </div>
+          </ng-template>
+          <!-- bouton pour modifier une personne -->
+
+          <!-- bouton pour supprimer une personne -->
+          <span class="divHover align-middle" id="deleteRevue" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
+          <ng-template #delete let-modal>
+            <div class="modal-header text-center">
+              <h4 class="modal-title">Attention !</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Êtes-vous sûr de vouloir supprimer l'accès à cette personne ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger" (click)="deletePersonne(modal, personne.id_pers)">Confirmer</button>
+              <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+          <!-- bouton pour supprimer une personne -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

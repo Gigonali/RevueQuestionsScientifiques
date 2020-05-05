@@ -9,7 +9,7 @@ import { Personne } from '../interfaces/personnes';
 export class GestioHomeComponent implements OnInit {
 
   // données de test
-  testUser: Personne = {id: 0, nom: 'Vallée', prenom: 'Agnès', estRescenseur: false, estContact: false };
+  testUser: Personne = {id_pers: 0, nom_pers: 'Vallée', prenom_pers: 'Agnès', estRecenseur_pers: 0, estContact_pers: 0};
   // données de test
 
   // données de la personne

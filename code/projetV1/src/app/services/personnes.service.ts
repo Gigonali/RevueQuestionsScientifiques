@@ -13,8 +13,29 @@ export class PersonnesService {
 
   constructor(private http: HttpClient) { }
 
-  getPersonne(): Observable<Personne[]> {
+  get(id: number): Observable<Personne> {
+    return this.http.get<Personne>(`${environment.apiPersonne}?id=${id}`);
+  }
+
+  getAll(): Observable<Personne[]> {
     return this.http.get<Personne[]>(environment.apiPersonne);
+  }
+
+  total(): Observable<number> {
+    return this.http.get<number>(`${environment.apiPersonne}?total=true`);
+  }
+
+  ajouter(personne: Personne): Observable<any> {
+    return this.http.put<any>(`${environment.apiPersonne}`, personne);
+  }
+
+
+  modifier(personne: Personne): Observable<any> {
+    return this.http.post<any>(environment.apiPersonne, personne);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiPersonne}?id=${id}`);
   }
 
 }

@@ -6,7 +6,7 @@
 
     function connect() {
       try {
-        $strConnection = 'mysql:host=localhost;dbname=rqs';
+        $strConnection = 'mysql:host=localhost;dbname=rqs;charset=utf8';
         $this->db = new PDO($strConnection, 'root', '');
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
