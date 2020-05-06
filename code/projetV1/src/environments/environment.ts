@@ -24,7 +24,7 @@ export const environment = {
   // tab-livres
   apiLivre: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Livre.php',
   // tab-maintenance
-  // apiMaintenance: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Maintenance.php',
+   apiMaintenance: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/Backup.php',
   // tab-messagesautomatique
   // apiMessageAutomatique: 'http://localhost/www/github/RevueQuestionsScientifiques/code/projetV1/api/MessageAutomatique.php',
   // tab-nouveaucompterendu

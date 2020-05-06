@@ -26,7 +26,7 @@ import { TabPersonnesComponent } from './tab-personnes/tab-personnes.component';
 import { TabEditeursComponent } from './tab-editeurs/tab-editeurs.component';
 import { TabPersonnalisationComponent } from './tab-personnalisation/tab-personnalisation.component';
 import { TabMessagesautomatiqueComponent } from './tab-messagesautomatique/tab-messagesautomatique.component';
-import { TabMaintenanceComponent } from './tab-maintenance/tab-maintenance.component';
+
 import { TabParametredeconnexionComponent } from './tab-parametredeconnexion/tab-parametredeconnexion.component';
 import { AccueilAdminGestioComponent } from './accueil-admin-gestio/accueil-admin-gestio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -40,6 +40,11 @@ import { AuthentificationService } from './services/authentification.service';
 import { ReinitialitionMdpComponent } from './reinitialition-mdp/reinitialition-mdp.component';
 import { ReinitialisationService } from './services/reinitialisation.service';
 import { DomaineService } from './services/domaine.service';
+import { TabMaintenanceComponent } from './tab-maintenance/tab-maintenance.component';
+
+import { MaintenanceService } from './maintenance.service';
+import { DateCustomPipe } from './date-custom.pipe';
+
 
 
 @NgModule({
@@ -70,7 +75,8 @@ import { DomaineService } from './services/domaine.service';
     PageNotFoundComponent,
     TabRevueComponent,
     TabDomainesComponent,
-    ReinitialitionMdpComponent
+    ReinitialitionMdpComponent,
+    DateCustomPipe
   ],
   imports: [
     BrowserModule,
@@ -85,6 +91,8 @@ import { DomaineService } from './services/domaine.service';
     AuthentificationService,
     ReinitialisationService,
     DomaineService,
+    MaintenanceService
+
   ],
   bootstrap: [AppComponent]
 })

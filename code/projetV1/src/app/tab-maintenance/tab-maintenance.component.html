@@ -1,1 +1,17 @@
-<p>tab-maintenance works!</p>
+<div class="card rounded">
+  <div class="card-header">
+    Backups
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Exporter</h5>
+    <p class="car-text">Créer une image de la base de données au format SQL</p>
+    <button (click)="exporter()" class="btn btn-primary btn-lg"><i class="fas fa-file-download"></i></button>
+    <p class="car-text">Dernier backup : </p><p class="font-weight-bold">{{this.date | dateCustom}}</p>
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Importer</h5>
+    <p class="car-text">Télécharger une image de la base de données au format SQL</p>
+    <button (click)="importer()" class="btn btn-primary btn-lg"><i class="fas fa-cloud-download-alt"></i></button>
+  </div>
+</div>
