@@ -34,8 +34,9 @@
   } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $domaineJSON = json_decode(file_get_contents('php://input'), true);
     $domaine = new Domaine();
+    $domaine->__set('id',$domaineJSON['id']);
     $domaine->__set('libelle',$domaineJSON['libelle']);
-    echo json_encode($domaine);
+
 
     echo json_encode($DomaineManager->ajouter($domaine));
 

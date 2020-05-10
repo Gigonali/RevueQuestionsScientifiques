@@ -42,7 +42,7 @@ class DomaineManager
     $domaine = null;
     $domaines = array();
     try {
-      $sql = "SELECT * FROM domaine" ;
+      $sql = "SELECT * FROM domaine ORDER BY `domaine`.`libelle_dom` ASC" ;
       $prep = $this->connexion->prepare($sql);
       $prep->execute();
       $result = $prep->fetchAll(PDO::FETCH_ASSOC);
@@ -76,19 +76,20 @@ class DomaineManager
   function ajouter($domaine) {
     $prep = null;
 
-    // vérifie si elle n'existe pas déjà
-    $sql = "SELECT * FROM domaine WHERE `id_dom`=:idDomaine";
+    // vérifie si il n'existe pas déjà
+    $sql = "SELECT * FROM domaine WHERE `libelle_dom`=:libelleDom";
     $prep = $this->connexion->prepare($sql);
-    $prep->bindValue(':idDomaine', $domaine->__get('id'), PDO::PARAM_INT);
+    $prep->bindValue(':libelleDom', $domaine->__get('libelle'), PDO::PARAM_STR);
     $prep->execute();
     $result = $prep->fetchAll(PDO::FETCH_ASSOC);
 
     if (!$result) {
+
       try {
         $sql = "INSERT INTO `domaine`(`libelle_dom`) VALUES (:libelleDom)";
         $prep = $this->connexion->prepare($sql);
         $prep->bindValue(':libelleDom', $domaine->__get('libelle'), PDO::PARAM_STR);
-        print_r($domaine);
+
 
         $result = $prep->execute();
 
@@ -98,7 +99,8 @@ class DomaineManager
         $prep->closeCursor();
         $prep = null;
       }
-    } else $result = false;
+    }else $result=false;
+
 
     return $result;
 
@@ -127,18 +129,27 @@ class DomaineManager
   function modifier($domaine)
   {
     $prep = null;
-    try {
-      $sql = "UPDATE domaine SET `libelle_dom`=:libelle WHERE `id_dom`=:idDomaine";
-      $prep = $this->connexion->prepare($sql);
-      $prep->bindValue(':idDomaine', $domaine->__get('id'), PDO::PARAM_INT);
-      $prep->bindValue(':libelle', $domaine->__get('libelle'), PDO::PARAM_STR);
-      $result=$prep->execute();
-    } catch (PDOException $e) {
-      die($e);
-    } finally {
-      $prep->closeCursor();
-      $prep = null;
+    // vérifie si il n'existe pas déjà
+    $sql = "SELECT * FROM domaine WHERE `libelle_dom`=:libelleDom";
+    $prep = $this->connexion->prepare($sql);
+    $prep->bindValue(':libelleDom', $domaine->__get('libelle'), PDO::PARAM_STR);
+    $prep->execute();
+    $result = $prep->fetchAll(PDO::FETCH_ASSOC);
+
+      if (!$result) {
+      try {
+        $sql = "UPDATE domaine SET `libelle_dom`=:libelle WHERE `id_dom`=:idDomaine";
+        $prep = $this->connexion->prepare($sql);
+        $prep->bindValue(':idDomaine', $domaine->__get('id'), PDO::PARAM_INT);
+        $prep->bindValue(':libelle', $domaine->__get('libelle'), PDO::PARAM_STR);
+        $result=$prep->execute();
+      } catch (PDOException $e) {
+        die($e);
+      } finally {
+        $prep->closeCursor();
+        $prep = null;
+      }
+      return $result;
     }
-    return $result;
   }
 }

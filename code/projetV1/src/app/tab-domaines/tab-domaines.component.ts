@@ -18,6 +18,9 @@ export class TabDomainesComponent implements OnInit {
   listDomaine: Array<Domaine>;
   ajoutDomaine: Domaine = {id: 0, libelle: ''};
   domaineObs$: Observable<Domaine[]>;
+  currentString: string;
+  domaineMod: Domaine;
+  erreur: {isError: boolean, message: string};
 
   constructor(private domaineService: DomaineService, private modalService: NgbModal) { }
 
@@ -31,25 +34,39 @@ export class TabDomainesComponent implements OnInit {
       this.listDomaine = domaines;
       sub.unsubscribe();
     });
+    this.erreur = {isError: false, message: ''};
   }
 
-  ajouterDomaine(domaine: Domaine) {
-
+  ajouterDomaine(modal: any, domaine: Domaine) {
+    if (this.listDomaine.every(d => d.libelle.localeCompare(domaine.libelle))) {
     const sub = this.domaineService.ajouter(domaine)
       .subscribe(data => {
         this.refreshDomaine();
         sub.unsubscribe();
       });
+    modal.close(); // ferme le modal
+    } else {
+      // le domaine existe déjà
+      this.erreur = {isError: true, message: 'Ajout impossible : ce domaine existe déjà!'};
+    }
     this.ajoutDomaine = {id: 0, libelle: ''};
   }
 
-  modifierDomaine(domaine: Domaine) {
-    const sub = this.domaineService.modifier(domaine)
-    .subscribe(domaines => {
-      this.refreshDomaine();
-      sub.unsubscribe();
-    });
-  }
+  modifierDomaine(domaine: Domaine, modal: any) {
+
+    if (this.listDomaine.every(d => d.libelle.localeCompare(domaine.libelle))) {
+      const sub = this.domaineService.modifier(domaine)
+        .subscribe(data => {
+          this.refreshDomaine();
+          sub.unsubscribe();
+        });
+      modal.close(); // ferme le modal
+      } else {
+        // le domaine existe déjà
+        this.erreur = {isError: true, message: 'Modification impossible : ce domaine existe déjà!'};
+      }
+
+}
 
   deleteDomaine(id: number) {
     const sub = this.domaineService.delete(id)
@@ -58,7 +75,11 @@ export class TabDomainesComponent implements OnInit {
        sub.unsubscribe();
     });
   }
-
+  openSmModif(content, object: Domaine) {
+    this.domaineMod = {id: object.id, libelle: object.libelle};
+    this.currentString = object.libelle;
+    this.openSm(content);
+  }
   // affiche modal
   openSm(content: any) {
     this.modalService.open(content, { size: 'sm' });
@@ -66,6 +87,7 @@ export class TabDomainesComponent implements OnInit {
 
   onCancel(modal: any) {
     modal.close('Close click');
+    this.erreur = {isError: false, message: ''};
   }
 
 }
