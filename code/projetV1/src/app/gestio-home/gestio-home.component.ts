@@ -21,7 +21,15 @@ export class GestioHomeComponent implements OnInit {
   // pour cacher le menu
   menuToggle = true;
 
+  // pour simplifier la structure de showMenu
+  publiEnCours: string[] = ['articlesEnCours', 'analysesCritiqueEnCours', 'comptesRendusEnCours', 'diversEnCours', 'specialHelhaEnCours'];
+  publiTerminees: string[] = ['articlesTerminees', 'analysesCritiqueTerminees',
+                              'comptesRendusTerminees', 'diversTerminees', 'specialHelhaTerminees'];
+  livres: string[] = ['livresTous', 'livresEnAttenteAction', 'livresEnDemande', 'livresEnRedaction', 'livresEnProduction', 'livresPublies'];
+  personnes: string[] = ['personnesToutes', 'personnesAuteurs', 'personnesRecenseurs', 'personnesExperts', 'personnesDivers'];
+
   // pour montrer les listes dans le menu
+  publicationsList = false;
   publicationsEnCoursList = false;
   publicationsTermineesList = false;
   livresList = false;
@@ -42,18 +50,56 @@ export class GestioHomeComponent implements OnInit {
   }
 
   // cacher le menu
-  toggleMenu() {
-    this.menuToggle = !this.menuToggle;
+  hideMenu() {
+    this.menuToggle = false;
+    this.publicationsList = false;
+    this.publicationsEnCoursList = false;
+    this.publicationsTermineesList = false;
+    this.livresList = false;
+    this.personnesList = false;
+
   }
 
-  // montrer liste dans le menu
+  // Montrer le menu
+  showMenu(listClic: string) {
+    this.menuToggle = true;
+
+    switch (listClic) {
+      case 'publications':
+        this.publicationsList = true;
+        break;
+      case 'livres':
+        this.livresList = true;
+        break;
+      case 'personne':
+        this.personnesList = true;
+        break;
+      default:
+        if (this.publiEnCours.includes(this.tabSelected)) {
+          this.publicationsList = true;
+          this.publicationsEnCoursList = true;
+        } else if (this.publiTerminees.includes(this.tabSelected)) {
+          this.publicationsList = true;
+          this.publicationsTermineesList = true;
+        } else if (this.livres.includes(this.tabSelected)) {
+          this.livresList = true;
+        } else if (this.personnes.includes(this.tabSelected)) {
+          this.personnesList = true;
+        }
+        break;
+    }
+  }
+
+  // cacher/montrer liste dans le menu
   collapseList(liste: string) {
     switch (liste) {
+      case 'publicationsList': this.publicationsList = !this.publicationsList; break;
       case 'publicationsEnCoursList': this.publicationsEnCoursList = !this.publicationsEnCoursList; break;
       case 'publicationsTermineesList': this.publicationsTermineesList = !this.publicationsTermineesList; break;
       case 'livresList': this.livresList = !this.livresList; break;
       case 'personnesList': this.personnesList = !this.personnesList; break;
       default:
+        this.publicationsList = false;
         this.publicationsEnCoursList = false;
         this.publicationsTermineesList = false;
         this.livresList = false;

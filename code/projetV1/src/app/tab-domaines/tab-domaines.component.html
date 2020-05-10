@@ -5,44 +5,53 @@
         <th colspan="3">
           <h2>Domaines | Liste complète</h2>
         </th>
+        <th></th>
       </tr>
       <tr>
-         <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter un domaine <i class="fas fa-plus-square"></i></button></th>
-              <!-- bouton pour ajouter un domaine -->
-              <ng-template #ajouter let-modal>
-                <div class="modal-header text-center">
-                  <h4 class="modal-title">Ajout</h4>
-                  <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="ajoutLibelle">Libelle</label>
-                      <input [(ngModel)]="ajoutDomaine.libelle" type="text" class="form-control" id="ajoutLibelle">
-                    </div>
+        <th class="text-center" colspan="3">Domaine</th>
+        <th></th>
+        <th></th>
+        <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter un
+            domaine <i class="fas fa-plus-square"></i></button></th>
+        <!-- bouton pour ajouter un domaine -->
+        <ng-template #ajouter let-modal>
+          <div class="modal-header text-center">
+            <h4 class="modal-title">Ajout</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="ajoutLibelle">Libelle</label>
+                <input [(ngModel)]="ajoutDomaine.libelle" type="text" class="form-control" id="ajoutLibelle">
+              </div>
 
-                    <div *ngIf="erreur.isError === true" class="alert alert-danger">{{erreur.message}}</div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="reset" class="btn btn-danger" (click)="ajouterDomaine(modal, ajoutDomaine)">Ajouter</button>
-                  <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
-                </div>
-               </ng-template>
-              <!-- bouton pour ajouter un domaine -->
-    </tr>
+              <div *ngIf="erreur.isError === true" class="alert alert-danger">{{erreur.message}}</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-danger" (click)="ajouterDomaine(modal, ajoutDomaine)">Ajouter</button>
+            <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
+          </div>
+        </ng-template>
+        <!-- bouton pour ajouter un domaine -->
+      </tr>
 
     </thead>
     <tbody>
       <!-- récupère tout les domaines dans la db -->
       <tr *ngFor="let domaine of listDomaine">
-        <td class="text-center">{{domaine.libelle}}</td>
+        <td colspan="3" class="text-center">{{domaine.libelle}}</td>
+        <td></td>
+        <td></td>
+        <td class="text-right align-middle">
 
           <!-- bouton pour modifier un domaine -->
 
-          <span class="divHover align-middle mr-2" id="modifierDomaine" (click)="openSmModif(modifier, domaine)"><i class="fas fa-edit"></i></span>
+          <span class="divHover align-middle mr-2" id="modifierDomaine" (click)="openSmModif(modifier, domaine)"><i
+              class="fas fa-edit"></i></span>
           <ng-template #modifier let-modal>
             <div class="modal-header text-center">
               <h4 class="modal-title">Modification</h4>
@@ -54,21 +63,24 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputNum">Libelle</label>
-                  <input [(ngModel)]="domaineMod.libelle" type="text" class="form-control" id="inputNum" placeholder="{{domaine.libelle}}">
+                  <input [(ngModel)]="domaineMod.libelle" type="text" class="form-control" id="inputNum"
+                    placeholder="{{domaine.libelle}}">
                 </div>
 
                 <div *ngIf="erreur.isError === true" class="alert alert-danger">{{erreur.message}}</div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modifierDomaine(domaineMod, modal)">Confirmer</button>
+              <button type="reset" class="btn btn-danger"
+                (click)="modifierDomaine(domaineMod, modal)">Confirmer</button>
               <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
             </div>
           </ng-template>
           <!-- bouton pour modifier un domaine -->
 
           <!-- bouton pour supprimer un domaine -->
-          <span class="divHover align-middle" id="deleteDomaine" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
+          <span class="divHover align-middle" id="deleteDomaine" (click)="openSm(delete)"><i
+              class="fas fa-trash"></i></span>
           <ng-template #delete let-modal>
             <div class="modal-header text-center">
               <h4 class="modal-title">Attention !</h4>
@@ -80,11 +92,13 @@
               <p>Êtes-vous sûr de vouloir effacer ce domaine ?</p>
             </div>
             <div class="modal-footer">
-              <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); deleteDomaine(domaine.id)">Confirmer</button>
+              <button type="reset" class="btn btn-danger"
+                (click)="modal.close('Close click'); deleteDomaine(domaine.id)">Confirmer</button>
               <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Annuler</button>
             </div>
           </ng-template>
           <!-- bouton pour supprimer un domaine -->
+        </td>
       </tr>
     </tbody>
   </table>
