@@ -23,6 +23,7 @@ export class AdminHomeComponent implements OnInit {
   menuToggle = true;
 
   // pour montrer les listes dans le menu
+  publicationsList = false;
   publicationsEnCoursList = false;
   publicationsTermineesList = false;
   livresList = false;
@@ -50,11 +51,13 @@ export class AdminHomeComponent implements OnInit {
   // montrer liste dans le menu
   collapseList(liste: string) {
     switch (liste) {
+      case 'publicationsList': this.publicationsList = !this.publicationsList; break;
       case 'publicationsEnCoursList': this.publicationsEnCoursList = !this.publicationsEnCoursList; break;
       case 'publicationsTermineesList': this.publicationsTermineesList = !this.publicationsTermineesList; break;
       case 'livresList': this.livresList = !this.livresList; break;
       case 'personnesList': this.personnesList = !this.personnesList; break;
       default:
+        this.personnesList = false;
         this.publicationsEnCoursList = false;
         this.publicationsTermineesList = false;
         this.livresList = false;

@@ -6,7 +6,12 @@
     <h5 class="card-title">Exporter</h5>
     <p class="car-text">Créer une image de la base de données au format SQL</p>
     <button (click)="exporter()" class="btn btn-primary btn-lg"><i class="fas fa-file-download"></i></button>
-    <p class="car-text">Dernier backup : </p><p class="font-weight-bold">{{this.date | dateCustom}}</p>
+    <p class="car-text">Dernier backup : <span class="font-weight-bold">{{this.date | dateCustom}}</span></p>
+    <div *ngIf="backupReussi == 0" class="alert alert-danger">Une erreur s'est produite durant l'export...</div>
+    <div *ngIf="backupReussi == 1" class="alert alert-success">
+      L'export s'est bien terminé avec succès ! Le téléchargement automatique va ce lancer dans quelques secondes...<br/>
+      Si le téléchargement ne se lance pas <a href="{{urlFile}}" download>Cliquez ici</a> !
+    </div>
 
   </div>
   <div class="card-body">
