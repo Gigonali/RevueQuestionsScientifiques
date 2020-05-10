@@ -8,8 +8,15 @@
         <th></th>
       </tr>
       <tr>
-        <th class="divHover text-center" scope="col" (click)="sortBy(!sortByMemo.numero, sortByMemo.isSpecialHelha)">Numéro</th>
-        <th class="divHover text-center" scope="col" (click)="sortBy(sortByMemo.numero, sortByMemo.isSpecialHelha)">Spéciale HELHa</th>
+        <th class="divHover text-center" scope="col" (click)="sortBy(true, sortByMemo.isSpecialHelha)">
+          Numéro <i class="fas" [ngClass]="{'fa-caret-up': sortByMemo.numero,'fa-caret-down': !sortByMemo.numero}" ></i>
+        </th>
+        <th class="divHover text-center" scope="col" (click)="sortBy(false, sortByMemo.isSpecialHelha)">
+          Spéciale HELHa  <i class="fas" [ngClass]="{'fa-minus': sortByMemo.isSpecialHelha == 1,
+                                                    'fa-check': sortByMemo.isSpecialHelha == 0,
+                                                    'fa-times': sortByMemo.isSpecialHelha == 2}"></i>
+        </th>
+        <th></th>
         <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter une revue <i class="fas fa-plus-square"></i></button></th>
         <!-- bouton pour ajouter une revue -->
         <ng-template #ajouter let-modal>
@@ -50,8 +57,10 @@
       <!-- récupère toutes les revues dans la db -->
       <tr *ngFor="let revue of listRevues">
         <td class="text-center">{{revue.numero_rev}}</td>
-        <td class="text-center"><i class="fas"
-               [ngClass]="{'fa-check':revue.special_helha_rev == 1, 'fa-times':revue.special_helha_rev == 0}"></i></td>
+        <td class="text-center">
+          <i class="fas" [ngClass]="{'fa-check':revue.special_helha_rev == 1, 'fa-times':revue.special_helha_rev == 0}"></i>
+        </td>
+        <td></td>
         <td class="text-right align-middle">
           <!-- bouton pour modifier une revue -->
           <span class="divHover align-middle mr-2" id="modifierRevue" (click)="openSmModif(modifier, revue)"><i class="fas fa-edit"></i></span>

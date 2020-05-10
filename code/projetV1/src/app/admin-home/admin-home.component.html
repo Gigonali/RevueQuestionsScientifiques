@@ -2,114 +2,150 @@
 
   <!-- Panel sur le côté -->
   <div>
-    <div *ngIf="menuToggle" class="bg-dark border-dark border-right border-bottom divHover">
+    <div class="bg-dark border-dark border-right border-bottom divHover">
       <!-- Nom du site et button pour revenir à l'accueil -->
-      <h3 (click)="changeTab('admin')" class="border-dark border-bottom text-white p-2 my-auto mx-auto">RQS INTRANET</h3>
+      <h3 (click)="changeTab('admin')" class="border-dark border-bottom text-white pt-2 pb-2 my-auto text-center">
+        <span class="ml-0"><i class="fas fa-home"></i></span>
+        <span *ngIf="menuToggle"> RQS INTRANET</span>
+      </h3>
 
       <!-- Boutons pour naviguer dans les différents tabs -->
-      <div *ngIf="menuToggle" class="border-right">
+      <div class="border-right">
         <div class="list-group list-group-flush" id="panelList" role="tablist">
 
           <!-- Recherche -->
           <a href="admin#recherche" (click)="changeTab('recherche')"
-            class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'recherche' }">Recherche</a>
+              class="list-group-item list-group-item-action itemHover"
+              [ngClass]="{'active':tabSelected === 'recherche' }">
+            <span class="align-middle"><i class="fas fa-search"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Recherche</span>
+          </a>
 
           <!-- Nouveau projet -->
           <a href="admin#nouveauProjet" (click)="changeTab('nouveauProjet')"
-            class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'nouveauProjet' }">Nouveau projet</a>
+              class="list-group-item list-group-item-action itemHover"
+              [ngClass]="{'active':tabSelected === 'nouveauProjet' }">
+            <span class="align-middle"><i class="fas fa-marker"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Nouveau projet</span>
+          </a>
 
           <!-- Nouveau compte rendu -->
           <a href="admin#nouveauCompteRendu" (click)="changeTab('nouveauCompteRendu')"
-            class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'nouveauCompteRendu' }">Nouveau compte rendu</a>
+              class="list-group-item list-group-item-action itemHover"
+              [ngClass]="{'active':tabSelected === 'nouveauCompteRendu' }">
+              <span class="align-middle"><i class="fas fa-pen-fancy"></i></span>
+              <span *ngIf="menuToggle" class="align-middle"> Nouveau compte rendu</span>
+          </a>
 
           <!-- Revues -->
           <a href="admin#revues" (click)="changeTab('revues')"
-            class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'revues' }">Revues</a>
+              class="list-group-item list-group-item-action itemHover"
+              [ngClass]="{'active':tabSelected === 'revues' }">
+            <span class="align-middle"><i class="fas fa-book-open"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Revues</span>
+          </a>
+
+          <!-- Publications -->
+          <a href="admin#publications" (click)="collapseList('publicationsList')"
+            class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': publicationsList}">
+            <span *ngIf="menuToggle" class="align-middle"><i class="fas fa-scroll"></i></span>
+            <span *ngIf="!menuToggle" (click)="toggleMenu()" class="align-middle"><i class="fas fa-scroll"></i></span>
+            <span *ngIf="menuToggle" class="align-middle">
+              Publications <i [ngClass]="{'fa-angle-up': publicationsList}" class="fas fa-angle-down align-middle"></i>
+            </span>
+          </a>
 
           <!-- Publications en cours -->
-          <a href="admin#publicationsEnCours" (click)="collapseList('publicationsEnCoursList')"
+          <a *ngIf="menuToggle && publicationsList" href="admin#publicationsEnCours" (click)="collapseList('publicationsEnCoursList')"
             class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': publicationsEnCoursList}">
             Publications en cours <i [ngClass]="{'fa-angle-up': publicationsEnCoursList}" class="fas fa-angle-down align-middle"></i></a>
             <!-- Liste des publications en cours -->
-            <a *ngIf="publicationsEnCoursList" href="admin#articlesEnCours" (click)="changeTab('articlesEnCours')"
+            <a *ngIf="menuToggle && publicationsEnCoursList" href="admin#articlesEnCours" (click)="changeTab('articlesEnCours')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'articlesEnCours' }">Articles</a>
 
-            <a *ngIf="publicationsEnCoursList" href="admin#analysesCritiqueEnCours" (click)="changeTab('analysesCritiqueEnCours')"
+            <a *ngIf="menuToggle && publicationsEnCoursList" href="admin#analysesCritiqueEnCours" (click)="changeTab('analysesCritiqueEnCours')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'analysesCritiqueEnCours' }">Analyses critiques</a>
 
-            <a *ngIf="publicationsEnCoursList" href="admin#comptesRendusEnCours" (click)="changeTab('comptesRendusEnCours')"
+            <a *ngIf="menuToggle && publicationsEnCoursList" href="admin#comptesRendusEnCours" (click)="changeTab('comptesRendusEnCours')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'comptesRendusEnCours' }">Comptes rendus</a>
 
-            <a *ngIf="publicationsEnCoursList" href="admin#diversEnCours" (click)="changeTab('diversEnCours')"
+            <a *ngIf="menuToggle && publicationsEnCoursList" href="admin#diversEnCours" (click)="changeTab('diversEnCours')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'diversEnCours' }">Divers</a>
 
-            <a *ngIf="publicationsEnCoursList" href="admin#specialHelhaEnCours" (click)="changeTab('specialHelhaEnCours')"
+            <a *ngIf="menuToggle && publicationsEnCoursList" href="admin#specialHelhaEnCours" (click)="changeTab('specialHelhaEnCours')"
               class="list-group-item list-group-item-action itemHover"
               [ngClass]="{'active':tabSelected === 'specialHelhaEnCours' }">Spéciale HELHa</a>
             <!-- Liste des publications en cours -->
           <!-- Publications en cours -->
 
           <!-- Publications terminées -->
-          <a href="admin#publicationsTerminées" (click)="collapseList('publicationsTermineesList')"
+          <a *ngIf="menuToggle && publicationsList" href="admin#publicationsTerminées" (click)="collapseList('publicationsTermineesList')"
             class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': publicationsTermineesList}">
             Publications terminées <i [ngClass]="{'fa-angle-up': publicationsTermineesList}" class="fas fa-angle-down align-middle"></i></a>
             <!-- Liste des publications terminées -->
-            <a *ngIf="publicationsTermineesList" href="admin#articlesTerminees" (click)="changeTab('articlesTerminees')"
+            <a *ngIf="menuToggle && publicationsList && publicationsTermineesList"
+              href="admin#articlesTerminees" (click)="changeTab('articlesTerminees')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'articlesTerminees' }">Articles</a>
 
-            <a *ngIf="publicationsTermineesList" href="admin#analysesCritiqueTerminees" (click)="changeTab('analysesCritiqueTerminees')"
+            <a *ngIf="menuToggle && publicationsList && publicationsTermineesList"
+              href="admin#analysesCritiqueTerminees" (click)="changeTab('analysesCritiqueTerminees')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'analysesCritiqueTerminees' }">Analyses critiques</a>
 
-            <a *ngIf="publicationsTermineesList" href="admin#comptesRendusTerminees" (click)="changeTab('comptesRendusTerminees')"
+            <a *ngIf="menuToggle && publicationsList && publicationsTermineesList"
+              href="admin#comptesRendusTerminees" (click)="changeTab('comptesRendusTerminees')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'comptesRendusTerminees' }">Comptes rendus</a>
 
-            <a *ngIf="publicationsTermineesList" href="admin#diversTerminees" (click)="changeTab('diversTerminees')"
+            <a *ngIf="menuToggle && publicationsList && publicationsTermineesList"
+              href="admin#diversTerminees" (click)="changeTab('diversTerminees')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'diversTerminees' }">Divers</a>
 
-            <a *ngIf="publicationsTermineesList" href="admin#specialHelhaTerminees" (click)="changeTab('specialHelhaTerminees')"
+            <a *ngIf="menuToggle && publicationsList && publicationsTermineesList"
+              href="admin#specialHelhaTerminees" (click)="changeTab('specialHelhaTerminees')"
               class="list-group-item list-group-item-action itemHover"
               [ngClass]="{'active':tabSelected === 'specialHelhaTerminees' }">Spéciale HELHa</a>
             <!-- Liste des publications terminées -->
           <!-- Publications terminées -->
+          <!-- Publications -->
 
           <!-- Livres -->
           <a href="admin#livres" (click)="collapseList('livresList')"
             class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': livresList}">
-            Livres <i [ngClass]="{'fa-angle-up': livresList}" class="fas fa-angle-down align-middle"></i></a>
+            <span *ngIf="menuToggle" class="align-middle"><i class="fas fa-book"></i></span>
+            <span *ngIf="!menuToggle" (click)="toggleMenu()" class="align-middle"><i class="fas fa-book"></i></span>
+            <span *ngIf="menuToggle" class="align-middle">
+               Livres <i [ngClass]="{'fa-angle-up': livresList}" class="fas fa-angle-down align-middle"></i>
+            </span>
+          </a>
             <!-- Liste livres -->
-            <a *ngIf="livresList" href="admin#livresTous" (click)="changeTab('livresTous')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresTous" (click)="changeTab('livresTous')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'livresTous' }">Tous</a>
 
-            <a *ngIf="livresList" href="admin#livresEnAttenteAction" (click)="changeTab('livresEnAttenteAction')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresEnAttenteAction" (click)="changeTab('livresEnAttenteAction')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'livresEnAttenteAction' }">En attente d'action</a>
 
-            <a *ngIf="livresList" href="admin#livresEnDemande" (click)="changeTab('livresEnDemande')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresEnDemande" (click)="changeTab('livresEnDemande')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'livresEnDemande' }">En demande</a>
 
-            <a *ngIf="livresList" href="admin#livresEnRedaction" (click)="changeTab('livresEnRedaction')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresEnRedaction" (click)="changeTab('livresEnRedaction')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'livresEnRedaction' }">En rédaction</a>
 
-            <a *ngIf="livresList" href="admin#livresEnProduction" (click)="changeTab('livresEnProduction')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresEnProduction" (click)="changeTab('livresEnProduction')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'livresEnProduction' }">En production</a>
 
-            <a *ngIf="livresList" href="admin#livresPublies" (click)="changeTab('livresPublies')"
+            <a *ngIf="menuToggle && livresList" href="admin#livresPublies" (click)="changeTab('livresPublies')"
               class="list-group-item list-group-item-action itemHover"
               [ngClass]="{'active':tabSelected === 'livresPublies' }">Publiés</a>
             <!-- Liste livres -->
@@ -118,25 +154,30 @@
           <!-- Personnes -->
           <a href="admin#personnes" (click)="collapseList('personnesList')"
             class="list-group-item list-group-item-action itemHover" [ngClass]="{'border-light': personnesList}">
-            Personnes <i [ngClass]="{'fa-angle-up': personnesList}" class="fas fa-angle-down align-middle"></i></a>
+            <span *ngIf="menuToggle" class="align-middle"><i class="fas fa-user-friends"></i></span>
+            <span *ngIf="!menuToggle" (click)="toggleMenu()" class="align-middle"><i class="fas fa-user-friends"></i></span>
+            <span *ngIf="menuToggle" class="align-middle">
+              Personnes <i [ngClass]="{'fa-angle-up': personnesList}" class="fas fa-angle-down align-middle"></i>
+            </span>
+          </a>
             <!-- Liste personnes -->
-            <a *ngIf="personnesList" href="admin#personnesToutes" (click)="changeTab('personnesToutes')"
+            <a *ngIf="menuToggle && personnesList" href="admin#personnesToutes" (click)="changeTab('personnesToutes')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'personnesToutes' }">Toutes</a>
 
-            <a *ngIf="personnesList" href="admin#personnesAuteurs" (click)="changeTab('personnesAuteurs')"
+            <a *ngIf="menuToggle && personnesList" href="admin#personnesAuteurs" (click)="changeTab('personnesAuteurs')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'personnesAuteurs' }">Auteurs</a>
 
-            <a *ngIf="personnesList" href="admin#personnesRecenseurs" (click)="changeTab('personnesRecenseurs')"
+            <a *ngIf="menuToggle && personnesList" href="admin#personnesRecenseurs" (click)="changeTab('personnesRecenseurs')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'personnesRecenseurs' }">Recenseurs</a>
 
-            <a *ngIf="personnesList" href="admin#personnesExperts" (click)="changeTab('personnesExperts')"
+            <a *ngIf="menuToggle && personnesList" href="admin#personnesExperts" (click)="changeTab('personnesExperts')"
               class="list-group-item list-group-item-action itemHover border-light"
               [ngClass]="{'active':tabSelected === 'personnesExperts' }">Experts</a>
 
-            <a *ngIf="personnesList" href="admin#personnesDivers" (click)="changeTab('personnesDivers')"
+            <a *ngIf="menuToggle && personnesList" href="admin#personnesDivers" (click)="changeTab('personnesDivers')"
               class="list-group-item list-group-item-action itemHover"
               [ngClass]="{'active':tabSelected === 'personnesDivers' }">Divers</a>
             <!-- Liste personnes -->
@@ -145,34 +186,56 @@
           <!-- Domaines -->
           <a href="admin#domaines" (click)="changeTab('domaines')"
             class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'domaines' }">Domaines</a>
+            [ngClass]="{'active':tabSelected === 'domaines' }">
+            <span class="align-middle"><i class="fas fa-microscope"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Domaines</span>
+          </a>
 
           <!-- Éditeurs -->
           <a href="admin#editeurs" (click)="changeTab('editeurs')"
             class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'editeurs' }">Éditeurs</a>
+            [ngClass]="{'active':tabSelected === 'editeurs' }">
+            <span class="align-middle"><i class="fas fa-spell-check"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Éditeurs</span>
+          </a>
 
           <!-- Personnalisation -->
           <a href="admin#personnalisation" (click)="changeTab('personnalisation')"
             class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'personnalisation' }">Personnalisation</a>
+            [ngClass]="{'active':tabSelected === 'personnalisation' }">
+            <span class="align-middle"><i class="fas fa-user-cog"></i></span>
+            <span *ngIf="menuToggle" (click)="toggleMenu()" class="align-middle"> Personnalisation</span>
+          </a>
 
           <!-- Messages automatiques -->
           <a href="admin#messagesAutomatiques" (click)="changeTab('messagesAutomatiques')"
             class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'messagesAutomatiques' }">Messages automatiques</a>
+            [ngClass]="{'active':tabSelected === 'messagesAutomatiques' }">
+            <span class="align-middle"><i class="fas fa-envelope"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Messages automatiques</span>
+
+          </a>
 
           <!-- Maintenance -->
           <a href="admin#maintenance" (click)="changeTab('maintenance')"
             class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'maintenance' }">Maintenance</a>
+            [ngClass]="{'active':tabSelected === 'maintenance' }">
+            <span class="align-middle"><i class="fas fa-tools"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Maintenance</span>
+          </a>
 
           <!-- Paramètres de connexion -->
           <a href="admin#parametresDeConnexion" (click)="changeTab('parametresDeConnexion')" class="list-group-item list-group-item-action itemHover"
-            [ngClass]="{'active':tabSelected === 'parametresDeConnexion' }">Paramètres de connexion</a>
+            [ngClass]="{'active':tabSelected === 'parametresDeConnexion' }">
+            <span class="align-middle"><i class="fas fa-cogs"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Paramètres de connexion</span>
+          </a>
 
           <!-- Déconnexion -->
-          <a href="lienamettre" class="list-group-item list-group-item-action itemHover">Deconnexion</a>
+          <a href="lienamettre" class="list-group-item list-group-item-action itemHover">
+            <span class="align-middle"><i class="fas fa-sign-out-alt"></i></span>
+            <span *ngIf="menuToggle" class="align-middle"> Déconnexion</span>
+          </a>
 
         </div>
       </div>

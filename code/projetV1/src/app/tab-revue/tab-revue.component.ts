@@ -93,6 +93,7 @@ export class TabRevueComponent implements OnInit {
   sortBy(modifNum: boolean, num: number) {
     if (modifNum) {
       this.listRevues.reverse();
+      this.sortByMemo.numero = !this.sortByMemo.numero;
     } else {
       switch (this.sortByMemo.isSpecialHelha) {
         case 1 :
