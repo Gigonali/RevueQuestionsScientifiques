@@ -11,12 +11,12 @@ export class MaintenanceService {
 
   constructor(private http: HttpClient) { }
 
-  exporter(): Observable<boolean> {
-    return this.http.get<boolean>(`${environment.apiMaintenance}`);
+  exporter(): Observable<any> {
+    return this.http.get<any>(`${environment.apiMaintenance}`);
   }
 
   getDate(): Observable<string> {
-    return this.http.post<string>(`${environment.apiMaintenance}?date=true`,{responseType: 'text'});
+    return this.http.get<string>(`${environment.apiMaintenance}?date=true`);
   }
 
 }

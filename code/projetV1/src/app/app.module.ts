@@ -42,8 +42,8 @@ import { ReinitialisationService } from './services/reinitialisation.service';
 import { DomaineService } from './services/domaine.service';
 import { TabMaintenanceComponent } from './tab-maintenance/tab-maintenance.component';
 
-import { MaintenanceService } from './maintenance.service';
-import { DateCustomPipe } from './date-custom.pipe';
+import { MaintenanceService } from './services/maintenance.service';
+import { DateCustomPipe } from './pipes/date-custom.pipe';
 
 
 
