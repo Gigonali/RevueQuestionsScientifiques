@@ -67,7 +67,13 @@ export class AdminHomeComponent implements OnInit {
 
     switch (listClic) {
       case 'publications':
-        this.publicationsList = true;
+        if (this.publiEnCours.includes(this.tabSelected)) {
+          this.publicationsList = true;
+          this.publicationsEnCoursList = true;
+        } else if (this.publiTerminees.includes(this.tabSelected)) {
+          this.publicationsList = true;
+          this.publicationsTermineesList = true;
+        }
         break;
       case 'livres':
         this.livresList = true;

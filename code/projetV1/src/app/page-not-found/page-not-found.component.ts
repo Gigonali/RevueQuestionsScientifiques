@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  public constructor(private titleService: Title, private router: Router ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('RQS | Erreur 404');
   }
 
 }

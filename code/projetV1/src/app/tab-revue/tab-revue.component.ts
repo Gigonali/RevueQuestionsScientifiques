@@ -21,7 +21,7 @@ export class TabRevueComponent implements OnInit {
   ajoutRevue: Revue = {id_rev: 0, numero_rev: null, special_helha_rev: -1};
   // sert pour la modification
   revueMod: Revue;
-  currentNumber: number;
+  currentRevue: Revue;
   // sert pour sauvegarder le tri choisi
   sortByMemo: {numero: boolean, isSpecialHelha: number} = {numero: false, isSpecialHelha: 0};
   // sert pour les erreurs
@@ -62,20 +62,25 @@ export class TabRevueComponent implements OnInit {
   }
 
   modifierRevue(modal: any, revue: Revue) {
-    if (this.listRevues.every(r => r.numero_rev !== revue.numero_rev)) { // regarde si le numéro existe déjà
-      // modifie la revue
-      const sub = this.revueService.modifier(revue)
-      .subscribe(revues => {
-        this.refreshRevues();
-        sub.unsubscribe();
-      });
-      // ferme le modal
-      modal.close();
-    } else if (this.currentNumber === revue.numero_rev) {
+    if (this.currentRevue.numero_rev === revue.numero_rev
+        && this.currentRevue.special_helha_rev === revue.special_helha_rev) {
       modal.close();
     } else {
-      // le numéro existe déjà
-      this.erreur = {isError: true, message: 'Modification impossible : une revue possède déjà ce numéro !'};
+      if (this.listRevues.every(r => r.numero_rev !== revue.numero_rev)
+          || this.currentRevue.numero_rev === revue.numero_rev
+          && this.currentRevue.special_helha_rev !== revue.special_helha_rev) {
+        // modifie la revue
+        const sub = this.revueService.modifier(revue)
+        .subscribe(revues => {
+          this.refreshRevues();
+          sub.unsubscribe();
+        });
+        // ferme le modal
+        modal.close();
+      } else {
+        this.erreur = {isError: true, message: 'Modification impossible : une revue possède déjà ce numéro !'};
+      }
+
     }
   }
 
@@ -118,8 +123,8 @@ export class TabRevueComponent implements OnInit {
   openSmModif(content, object: Revue) {
     // initialise la variable pour préremplir les champs
     this.revueMod = {id_rev: object.id_rev, numero_rev: object.numero_rev, special_helha_rev: object.special_helha_rev};
-    // sauvegarde la numero actuel de la revue
-    this.currentNumber = object.numero_rev;
+    // sauvegarde la revue actuelle
+    this.currentRevue = {id_rev: object.id_rev, numero_rev: object.numero_rev, special_helha_rev: object.special_helha_rev};
     // ouvre le modal
     this.openSm(content);
   }
