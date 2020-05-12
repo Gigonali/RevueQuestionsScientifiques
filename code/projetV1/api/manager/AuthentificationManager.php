@@ -29,6 +29,48 @@ class AuthentificationManager{
       }
     }
 
+    /* function connecter($mailCo, $mdp) {
+      $prep = null;
+      $result = null;
+      $identifiants[] = null;
+      $perms = null;
+
+      try {
+        // tentative récupération d'une personne par email
+        $sql = "SELECT COUNT(1) as isCorrespondance, id_pers as id, mail_connexion_pers as mail, mdp_pers as hashMdp
+                FROM personne WHERE mail_connexion_pers=:mail";
+        $prep = $this->connexion->prepare($sql);
+        $prep->bindValue(':mail', $mailCo, PDO::PARAM_STR);
+        $prep->execute();
+        $result = $prep->fetchAll(PDO::FETCH_ASSOC);
+        $result = $result[0];
+
+        if ($result['isCorrespondance'] == 1) {
+          if (isset($result['hashMdp']) && !empty($result['hashMdp'])) {
+            $identifiants['isCorrect'] = password_verify($mdp, $result['hashMdp']);
+            var_dump($identifiants);
+            if ($identifiants['isCorrect']) {
+              $identifiants['id'] = $result['id'];
+              $identifiants['mail'] = $result['mail'];
+
+              $perms = $this->getPermission($identifiants['id']);
+              !isset($perms) ? $perms === 'ADMINISTRATEUR' ? 2 : 1 : 3;
+
+            }
+          }
+        }
+
+      } catch (PDOException $e) {
+        die($e);
+
+      } finally {
+        $prep->closeCursor();
+        $prep = null;
+      }
+
+      return $identifiants;
+    } */
+
     function isAuteur($id){
       $prep = null;
       $result = false;

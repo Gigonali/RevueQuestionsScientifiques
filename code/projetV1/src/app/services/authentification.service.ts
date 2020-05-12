@@ -15,4 +15,8 @@ export class AuthentificationService {
   connecter(authentifiant: Authentifiant): Observable<number> {
     return this.http.post<number>(`${environment.apiAuthentification}`, authentifiant);
   }
+
+  /* connecter(authentifiant: Authentifiant): Observable<any> {
+    return this.http.post<any>(`${environment.apiAuthentification}`, authentifiant);
+  } */
 }

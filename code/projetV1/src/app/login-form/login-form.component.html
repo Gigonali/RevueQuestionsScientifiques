@@ -8,14 +8,22 @@
         <div class="card">
           <img class="card-img-top userImgProfile" src="../../assets/img/user/userProfile.png">
           <div class="card-body">
-            <form>
+            <form [formGroup]="authentifiantsForm">
               <div class="form-group">
                 <label>Adresse e-mail</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-user"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com" [(ngModel)]="this.authentifiant.mailCo" [ngModelOptions]="{ standalone: true }">
+                  <input type="text" class="form-control"
+                    [class.is-valid] = "authentifiantsForm.get('email').valid"
+                    [class.is-invalid] = "authentifiantsForm.get('email').invalid && authentifiantsForm.get('email').touched"
+                    formControlName="email" placeholder="exemple@gmail.com">
+                </div>
+                <div class="text-center" *ngIf="(emailCo.invalid && emailCo.touched) || emailCo.dirty">
+                  <small *ngIf="emailCo.errors?.required" class="text-danger">Veuillez renseignez une adresse mail</small>
+                  <!--question mark(?) is a safe navigation operator-->
+                  <small *ngIf="emailCo.errors?.pattern" class="text-danger">Veuillez renseignez une adresse mail valide</small>
                 </div>
               </div>
               <div class="form-group">
@@ -24,7 +32,15 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fas fa-key"></i></div>
                   </div>
-                  <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="this.authentifiant.mdp" [ngModelOptions]="{ standalone: true }">
+                  <input type="password" class="form-control"
+                    [class.is-valid] = "authentifiantsForm.get('mdp').valid"
+                    [class.is-invalid] = "authentifiantsForm.get('mdp').invalid && authentifiantsForm.get('mdp').touched"
+                    formControlName="mdp" placeholder="Mot de passe">
+                </div>
+                <div class="text-center" *ngIf="(mdpCo.invalid && mdpCo.touched) || mdpCo.dirty">
+                  <small *ngIf="mdpCo.errors?.required" class="text-danger">Veuillez renseignez votre mot de passe</small>
+                  <!--question mark(?) is a safe navigation operator-->
+                  <small *ngIf="mdpCo.errors?.pattern" class="text-danger">Veuillez renseignez un mot de passe valide</small>
                 </div>
                 <div class="text-center"><a href="#" routerLink='/reinitialisation'>Mot de passe oublié ?</a></div>
               </div>
