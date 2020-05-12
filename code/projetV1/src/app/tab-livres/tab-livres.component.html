@@ -135,23 +135,13 @@
             </button>
           </div>
           <div class="modal-body">
-
-              <div class="form-group col-md-6">
-                <label for="ISBN">ISBN</label>
-                <input [(ngModel)]="ajoutLivre.isbn" type="text" class="form-control" id="ISBN">
-                <label for="isbnNum">ISBN - Version numérique</label>
-                <input [(ngModel)]="ajoutLivre.isbnNumerique" type="text" class="form-control" id="isbnNum">
-              </div>
-              <div class="form-group col-md-6">
-                <fieldset>
-                  <legend>Auteur</legend>
-                  <label for="nomAuteur">Nom</label>
-                  <input [(ngModel)]="ajoutLivre.nomAuteur" type="text" class="form-control" id="nomAuteur">
-                  <label for="prenomAuteur">Prenom</label>
-                  <input [(ngModel)]="ajoutLivre.prenomAuteur" type="text" class="form-control" id="prenomAuteur">
-                </fieldset>
-              </div>
-              <div class="form-group col-md-6">
+            <div class="container">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="ISBN">ISBN</label>
+                  <input [(ngModel)]="ajoutLivre.isbn" type="text" class="form-control" id="ISBN">
+                  <label for="isbnNum">ISBN - Version numérique</label>
+                  <input [(ngModel)]="ajoutLivre.isbnNumerique" type="text" class="form-control" id="isbnNum">
                   <label for="titre">Titre</label>
                   <input [(ngModel)]="ajoutLivre.titre" type="text" class="form-control" id="titre">
                   <label for="annee">Année</label>
@@ -161,17 +151,34 @@
                   <label for="pages">Nombre de pages</label>
                   <input [(ngModel)]="ajoutLivre.pages" type="number" min="0" class="form-control" id="pages">
                   <label for="prix">Prix</label>
-                  <input [(ngModel)]="ajoutLivre.prix" type="number" min="0" class="form-control" id="prix">
+                  <input [(ngModel)]="ajoutLivre.prix" type="text" min="0" class="form-control" id="prix">
                   <label for="brochure">Brochure</label>
                   <input [(ngModel)]="ajoutLivre.brochure" type="text" class="form-control" id="brochure">
-                  <label for="responsabiliteEdition">Responsabilitée de l'édition</label>
-                  <input [(ngModel)]="ajoutLivre.respEdition" type="text" class="form-control" id="responsabiliteEdition">
-                  <label for="responsabiliteTraduction">Responsabilité de la traduction</label>
-                  <input [(ngModel)]="ajoutLivre.respTraduction" type="text" class="form-control" id="responsabiliteTraduction">
                   <label for="etatLivre">État du livre</label>
-                  <input [(ngModel)]="ajoutLivre.idEtatLivre" type="text" class="form-control" id="etatLivre">
+                  <select id="etatLivre" class="form-control">
+                    <option *ngFor="let etat of listeEtatsLivre"  value="etat.id">{{etat.libelle}}</option>
+                  </select>
+                  <label for="maisonEdition">Maison d'édition</label>
+                  <select id="maisonEdition" class="form-control">
+                    <option *ngFor="let me of listeMaisonEditions" value="me.id">{{me.nom}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <fieldset>
+                    <legend>Auteur</legend>
+                    <label for="nomAuteur">Nom</label>
+                    <input [(ngModel)]="ajoutLivre.nomAuteur" type="text" class="form-control" id="nomAuteur">
+                    <label for="prenomAuteur">Prenom</label>
+                    <input [(ngModel)]="ajoutLivre.prenomAuteur" type="text" class="form-control" id="prenomAuteur">
+                    <label for="respEdition">Responsabilitée de l'édition</label>
+                    <textarea [(ngModel)]="ajoutLivre.respEdition" rows="5" class="form-control" id="respEdition"></textarea>
+                    <label for="respTraduction">Responsabilité de la traduction</label>
+                    <textarea [(ngModel)]="ajoutLivre.respTraduction" rows="5" class="form-control" id="respTraduction"></textarea>
+                  </fieldset>
+                </div>
               </div>
             </div>
+          </div>
 
           <div class="modal-footer">
             <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); modifierLivre(ajoutLivre)">Modifier</button>

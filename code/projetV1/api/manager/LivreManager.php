@@ -31,13 +31,29 @@ class LivreManager {
 
         $liste = array();
         while($data = $q->fetch(PDO::FETCH_ASSOC)) {
-          array_push($liste, new Livre($data));
+          $livre = new Livre(null);
+          $livre->__set('id',$data['id_liv']);
+          $livre->__set('isbn',$data['isbn_liv']);
+          $livre->__set('isbnNumerique',$data['isbn_numerique_liv']);
+          $livre->__set('nomAuteur',$data['nom_auteur_liv']);
+          $livre->__set('prenomAuteur',$data['prenom_auteur_liv']);
+          $livre->__set('titre',$data['titre_liv']);
+          $livre->__set('annee',$data['annee_liv']);
+          $livre->__set('collection',$data['collection_liv']);
+          $livre->__set('pages',$data['pages_liv']);
+          $livre->__set('prix',$data['prix_liv']);
+          $livre->__set('brochure',$data['brochure_liv']);
+          $livre->__set('respEdition',$data['responsabilite_edition_pub']);
+          $livre->__set('respTraduction',$data['responsabilite_traduction_pub']);
+          $livre->__set('idEtatLivre',$data['id_etat_livre']);
+          array_push($liste, $livre);
         }
       } catch (PDOException $e) {
         die($e);
       } finally {
         $q->closeCursor();
       }
+
       return $liste;
     }
 
