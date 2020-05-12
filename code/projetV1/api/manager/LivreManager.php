@@ -92,8 +92,8 @@ class LivreManager {
       try {
         $sql = "UPDATE livre SET isbn_liv = :isbn, isbn_numerique_liv = :isbnNumerique, nom_auteur_liv = :nomAuteur,
         prenom_auteur_liv = :prenomAuteur, titre_liv = :titre, annee_liv = :annee, collection_liv = :collection,
-        pages_liv = :pages, prix_liv = :prix, brochure_liv = :brochure, responsabilite_edition_liv = :respEdition,
-        responsabilite_traduction_liv = :respTraduction, id_etat_livre = :idEtatLivre WHERE id_liv = :id";
+        pages_liv = :pages, prix_liv = :prix, brochure_liv = :brochure, responsabilite_edition_pub = :respEdition,
+        responsabilite_traduction_pub = :respTraduction, id_etat_livre = :idEtatLivre WHERE id_liv = :id";
 
         $q = $this->connexion->prepare($sql);
         $q->bindValue(':isbn', $l->isbn, PDO::PARAM_STR);
@@ -109,6 +109,7 @@ class LivreManager {
         $q->bindValue(':respEdition', $l->respEdition, PDO::PARAM_STR);
         $q->bindValue(':respTraduction', $l->respTraduction, PDO::PARAM_STR);
         $q->bindValue(':idEtatLivre', $l->idEtatLivre, PDO::PARAM_INT);
+        $q->bindValue(':id', $l->id, PDO::PARAM_INT);
 
         $resultat = $q->execute();
       } catch (PDOException $e) {

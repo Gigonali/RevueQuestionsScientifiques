@@ -87,6 +87,7 @@ export class TabLivresComponent implements OnInit {
   modifierLivre(livre: Livre) {
     const sub = this.livreService.modifier(livre)
     .subscribe(livre => {
+      this.refreshLivres();
       this.refreshMaisonEditions();
       this.initAjoutLivre();
       sub.unsubscribe();
