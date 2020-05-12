@@ -29,6 +29,7 @@ export class TabLivresComponent implements OnInit {
   constructor(private maisonEditionService: MaisonEditionService, private livreService: LivreService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.initAjoutLivre();
     this.refreshLivres();
     this.refreshMaisonEditions();
     //this.refreshEtatsLivre();
