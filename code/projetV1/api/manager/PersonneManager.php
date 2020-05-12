@@ -182,7 +182,7 @@
         case 'auteurs': return "SELECT * FROM personne INNER JOIN auteur ON personne.id_pers = auteur.id_pers";
         case 'recenseurs': return "SELECT * FROM personne WHERE estRecenseur_pers=1";
         case 'experts': return "SELECT * FROM personne INNER JOIN expert ON personne.id_pers = expert.id_pers";
-        case 'divers': return "SELECT * FROM personne WHERE estContact_pers=1";
+        case 'contacts': return "SELECT * FROM personne WHERE estContact_pers=1";
         default: return "SELECT * FROM personne";
       }
     }

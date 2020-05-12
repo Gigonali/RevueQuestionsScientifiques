@@ -208,7 +208,7 @@ export class TabPersonnesComponent implements OnInit {
       case 'auteurs': return 'Ajouter un auteur ';
       case 'recenseurs': return 'Ajouter un recenseur ';
       case 'experts': return 'Ajouter un expert ';
-      case 'divers': return 'Ajouter un contact ';
+      case 'contacts': return 'Ajouter un contact ';
       default: return 'Ajouter une personne ';
     }
   }
