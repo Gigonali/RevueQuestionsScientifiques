@@ -1,7 +1,7 @@
 export interface Livre {
   id: number;
   isbn: string;
-  isbnNum: string;
+  isbnNumerique: string;
   nomAuteur: string;
   prenomAuteur: string;
   titre: string;
@@ -10,7 +10,7 @@ export interface Livre {
   pages: number;
   prix: number; // Vérification que le nombre n'est pas troqué nécessaire
   brochure: string;
-  responsabiliteEdition?: string;
-  responsabiliteTraduction?: string;
+  respEdition?: string;
+  respTraduction?: string;
   idEtatLivre: number;
 }

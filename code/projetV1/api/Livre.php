@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
   $livreJSON = json_decode(file_get_contents('php://input'), true);
   $livre = new Livre($livreJSON);
-  echo json_encode($livre);
   echo json_encode($livreManager->ajouter($livre));
 } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
   $idToDelete = $_GET['id'];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MaisonEdition } from '../interfaces/maison-edition';
 import { Observable } from 'rxjs';
 import { Livre } from '../interfaces/livre';
@@ -13,7 +13,6 @@ import { EtatLivre } from '../interfaces/etat-livre';
   styleUrls: ['./tab-livres.component.css']
 })
 export class TabLivresComponent implements OnInit {
-
   listeEtatsLivre: Array<EtatLivre> = [
     {id: 0, libelle: 'Emprunté'},
     {id: 1, libelle: 'Perdu'},
@@ -32,7 +31,7 @@ export class TabLivresComponent implements OnInit {
   ngOnInit(): void {
     this.refreshLivres();
     this.refreshMaisonEditions();
-    this.refreshEtatsLivre();
+    //this.refreshEtatsLivre();
   }
 
   refreshMaisonEditions() {
@@ -60,7 +59,7 @@ export class TabLivresComponent implements OnInit {
   initAjoutLivre(){
     this.ajoutLivre = {id: 0,
       isbn: '',
-      isbnNum: '',
+      isbnNumerique: '',
       nomAuteur: '',
       prenomAuteur: '',
       titre: '',
@@ -69,8 +68,8 @@ export class TabLivresComponent implements OnInit {
       pages: 0,
       prix: 0,
       brochure: '',
-      responsabiliteEdition: '',
-      responsabiliteTraduction: '',
+      respEdition: '',
+      respTraduction: '',
       idEtatLivre: 0};
   }
 
@@ -104,9 +103,10 @@ export class TabLivresComponent implements OnInit {
 
   // affiche modal
   openSmModif(content, livre: Livre) {
+    this.openSm(content);
     this.livreMod = {id: livre.id,
       isbn: livre.isbn,
-      isbnNum: livre.isbnNum,
+      isbnNumerique: livre.isbnNumerique,
       nomAuteur: livre.nomAuteur,
       prenomAuteur: livre.prenomAuteur,
       titre: livre.titre,
@@ -115,10 +115,9 @@ export class TabLivresComponent implements OnInit {
       pages: livre.pages,
       prix: livre.prix,
       brochure: livre.brochure,
-      responsabiliteEdition: livre.responsabiliteEdition,
-      responsabiliteTraduction: livre.responsabiliteTraduction,
+      respEdition: livre.respEdition,
+      respTraduction: livre.respTraduction,
       idEtatLivre: livre.idEtatLivre};
-    this.openSm(content);
   }
 
   openSm(content) {
@@ -135,7 +134,7 @@ export class TabLivresComponent implements OnInit {
       if (livre.id === id) {
         this.ajoutLivre.id = livre.id;
         this.ajoutLivre.isbn = livre.isbn;
-        this.ajoutLivre.isbnNum = livre.isbnNum;
+        this.ajoutLivre.isbnNumerique = livre.isbnNumerique;
         this.ajoutLivre.nomAuteur = livre.nomAuteur;
         this.ajoutLivre.prenomAuteur = livre.prenomAuteur;
         this.ajoutLivre.titre = livre.titre;
@@ -144,8 +143,8 @@ export class TabLivresComponent implements OnInit {
         this.ajoutLivre.pages = livre.pages;
         this.ajoutLivre.prix = livre.prix;
         this.ajoutLivre.brochure = livre.brochure;
-        this.ajoutLivre.responsabiliteEdition = livre.responsabiliteEdition;
-        this.ajoutLivre.responsabiliteTraduction = livre.responsabiliteTraduction;
+        this.ajoutLivre.respEdition = livre.respEdition;
+        this.ajoutLivre.respTraduction = livre.respTraduction;
         this.ajoutLivre.idEtatLivre = livre.idEtatLivre;
       }
     });
