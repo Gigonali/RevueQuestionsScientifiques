@@ -25,7 +25,7 @@
     "angular-crypto-js": "^1.0.7",
     "bootstrap": "^4.4.1",
     "crypto-js": "^4.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-modal": "^1.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
