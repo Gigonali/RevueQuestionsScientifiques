@@ -17,8 +17,8 @@ export class PersonnesService {
     return this.http.get<Personne>(`${environment.apiPersonne}?id=${id}`);
   }
 
-  getAll(): Observable<Personne[]> {
-    return this.http.get<Personne[]>(environment.apiPersonne);
+  getAll(filtre: string): Observable<Personne[]> {
+    return this.http.get<Personne[]>(`${environment.apiPersonne}?filtre=${filtre}`);
   }
 
   total(): Observable<number> {

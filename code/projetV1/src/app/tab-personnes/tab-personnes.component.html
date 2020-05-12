@@ -3,7 +3,8 @@
     <thead>
       <tr>
         <th colspan="3">
-          <h2>Personnes | Liste complète</h2>
+          <h2 *ngIf="filtre === 'toutes'">Personnes | Liste complète</h2>
+          <h2 *ngIf="filtre !== 'toutes'">Personnes | Liste des {{filtre}}</h2>
         </th>
         <th></th>
       </tr>
@@ -14,9 +15,100 @@
         <th class="divHover text-center" scope="col">Institution</th>
         <th class="divHover text-center" scope="col">Adresse</th>
         <th class="divHover text-center" scope="col">Commentaire</th>
-        <th class="text-right"><button type="button" class="btn btn-secondary" (click)="openSm(ajouter)">Ajouter une personne <i class="fas fa-plus-square"></i></button></th>
+        <th class="text-right">
+          <button type="button" class="btn btn-secondary" (click)="openXl(ajouter)">{{getAjoutButtonText()}}<i class="fas fa-plus-square"></i></button>
+        </th>
         <!-- bouton pour ajouter une personne -->
         <ng-template #ajouter let-modal>
+          <div class="modal-header text-center">
+            <h4 *ngIf="filtre === 'toutes'" class="modal-title">Ajouter personne</h4>
+            <h4 *ngIf="filtre !== 'toutes'" class="modal-title">Ajouter {{filtre.substr(0, filtre.length-1)}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="ajoutNom">Nom</label>
+                <input [(ngModel)]="ajoutPersonne.nom_pers" type="text" class="form-control"
+                        id="ajoutNom">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutPrenom">Prénom</label>
+                <input [(ngModel)]="ajoutPersonne.prenom_pers" type="text" class="form-control"
+                        id="ajoutPrenom">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutMailContact">Mail de contact</label>
+                <input [(ngModel)]="ajoutPersonne.mail_contact_pers" type="text" class="form-control"
+                        id="ajoutMailContact">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutMailConnexion">Mail de connexion</label>
+                <input [(ngModel)]="ajoutPersonne.mail_connexion_pers" type="text" class="form-control"
+                        id="ajoutMailConnexion">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutRecenseur">Recenseur</label>
+                <select [(ngModel)]="ajoutPersonne.estRecenseur_pers" id="inputRecenseur" class="form-control">
+                  <option value="1">Oui</option>
+                  <option value="0">Non</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutContact">Contact</label>
+                <select [(ngModel)]="ajoutPersonne.estContact_pers" id="ajoutContact" class="form-control">
+                  <option value="1">Oui</option>
+                  <option value="0">Non</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutInstitutionCourte">Institution courte</label>
+                <input [(ngModel)]="ajoutPersonne.institution_courte_pers" type="text" class="form-control"
+                        id="ajoutInstitutionCourte">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutInstitutionLongue">Institution longue</label>
+                <input [(ngModel)]="ajoutPersonne.institution_longue_pers" type="text" class="form-control"
+                        id="ajoutInstitutionLongue">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutRue">Rue</label>
+                <input [(ngModel)]="ajoutPersonne.adr_rue_pers" type="text" class="form-control"
+                        id="ajoutRue">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="ajoutNum">Numéro</label>
+                <input [(ngModel)]="ajoutPersonne.adr_num_pers" type="text" class="form-control"
+                        id="ajoutNum">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="ajoutCp">Code postal</label>
+                <input [(ngModel)]="ajoutPersonne.adr_cp_pers" type="text" class="form-control"
+                        id="ajoutCp">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutPays">Pays</label>
+                <input [(ngModel)]="ajoutPersonne.adr_pays_pers" type="text" class="form-control"
+                        id="ajoutPays">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutVille">Ville</label>
+                <input [(ngModel)]="ajoutPersonne.adr_ville_pers" type="text" class="form-control"
+                        id="ajoutVille">
+              </div>
+              <div class="form-group col-md-12">
+                <label for="ajoutCommentaire">Commentaire</label>
+                <textarea [(ngModel)]="ajoutPersonne.commentaire_pers" class="form-control" id="ajoutCommentaire" rows="3"></textarea>
+              </div>
+            </div>
+            <div *ngIf="erreur.isError" class="alert alert-danger">{{erreur.message}}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-primary" (click)="ajouterPersonne(modal, ajoutPersonne)">Ajouter</button>
+            <button type="button" class="btn btn-secondary" (click)="onCancel(modal)">Annuler</button>
+          </div>
         </ng-template>
         <!-- bouton pour ajouter une personne -->
       </tr>
@@ -37,11 +129,101 @@
         </td>
         <td class="text-center">{{personne.commentaire_pers}}</td>
         <td class="text-right align-middle">
+          <!-- bouton voir plus -->
+          <span class="divHover align-middle mr-2" id="voirplusPersonne" (click)="openXl(voirPlus)"><i class="fas fa-search-plus"></i></span>
+          <ng-template #voirPlus let-modal>
+            <div class="modal-header text-center">
+              <h4 *ngIf="filtre === 'toutes'" class="modal-title">Détails personne</h4>
+              <h4 *ngIf="filtre !== 'toutes'" class="modal-title">Détails {{filtre.substr(0, filtre.length-1)}}</h4>
+              <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputNom">Nom</label>
+                  <input [(ngModel)]="personne.nom_pers" type="text" class="form-control"
+                          id="inputNom" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPrenom">Prénom</label>
+                  <input [(ngModel)]="personne.prenom_pers" type="text" class="form-control"
+                          id="inputPrenom" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMailContact">Mail de contact</label>
+                  <input [(ngModel)]="personne.mail_contact_pers" type="text" class="form-control"
+                          id="inputMailContact" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputMailConnexion">Mail de connexion</label>
+                  <input [(ngModel)]="personne.mail_connexion_pers" type="text" class="form-control"
+                          id="inputMailConnexion" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputRecenseur">Recenseur</label>
+                  <input *ngIf="personne.estRecenseur_pers > 0" value="Oui" id="inputRecenseur" class="form-control" readonly>
+                  <input *ngIf="personne.estRecenseur_pers < 1" value="Non" id="inputRecenseur" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputContact">Contact</label>
+                  <input *ngIf="personne.estContact_pers > 0" value="Oui" id="inputContact" class="form-control" readonly>
+                  <input *ngIf="personne.estContact_pers < 1" value="Non" id="inputContact" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputInstitutionCourte">Institution courte</label>
+                  <input [(ngModel)]="personne.institution_courte_pers" type="text" class="form-control"
+                          id="inputInstitutionCourte" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputInstitutionLongue">Institution longue</label>
+                  <input [(ngModel)]="personne.institution_longue_pers" type="text" class="form-control"
+                          id="inputInstitutionLongue" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputRue">Rue</label>
+                  <input [(ngModel)]="personne.adr_rue_pers" type="text" class="form-control"
+                          id="inputRue" readonly>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputNum">Numéro</label>
+                  <input [(ngModel)]="personne.adr_num_pers" type="text" class="form-control"
+                          id="inputNum" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputCp">Code postal</label>
+                  <input [(ngModel)]="personne.adr_cp_pers" type="text" class="form-control"
+                          id="inputCp" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPays">Pays</label>
+                  <input [(ngModel)]="personne.adr_pays_pers" type="text" class="form-control"
+                          id="inputPays" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputVille">Ville</label>
+                  <input [(ngModel)]="personne.adr_ville_pers" type="text" class="form-control"
+                          id="inputVille" readonly>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputCommentaire">Commentaire</label>
+                  <textarea [(ngModel)]="personne.commentaire_pers" class="form-control" id="inputCommentaire" rows="3" readonly></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="onCancel(modal)">Retour</button>
+            </div>
+          </ng-template>
+          <!-- bouton voir plus -->
+
           <!-- bouton pour modifier une personne -->
           <span class="divHover align-middle mr-2" id="modifierPersonne" (click)="openSmModif(modifier, personne)"><i class="fas fa-edit"></i></span>
           <ng-template #modifier let-modal>
             <div class="modal-header text-center">
-              <h4 class="modal-title">Modification</h4>
+              <h4 *ngIf="filtre === 'toutes'" class="modal-title">Modification personne</h4>
+              <h4 *ngIf="filtre !== 'toutes'" class="modal-title">Modification {{filtre.substr(0, filtre.length-1)}}</h4>
               <button type="button" class="close" aria-label="Close" (click)="onCancel(modal)">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -51,56 +233,75 @@
                 <div class="form-group col-md-6">
                   <label for="inputNom">Nom</label>
                   <input [(ngModel)]="personneMod.nom_pers" type="text" class="form-control"
-                          id="inputNom" placeholder="{{personne.nom_pers}}">
+                          id="inputNom">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPrenom">Prénom</label>
                   <input [(ngModel)]="personneMod.prenom_pers" type="text" class="form-control"
-                          id="inputPrenom" placeholder="{{personne.prenom_pers}}">
+                          id="inputPrenom">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputMailContact">Mail de contact</label>
-                  <input [(ngModel)]="personneMod.mailContact_pers" type="text" class="form-control"
-                          id="inputMailContact" placeholder="{{personne.mailContact_pers}}">
+                  <input [(ngModel)]="personneMod.mail_contact_pers" type="text" class="form-control"
+                          id="inputMailContact">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputMailConnexion">Mail de connexion</label>
-                  <input [(ngModel)]="personneMod.mailConnexion_pers" type="text" class="form-control"
-                          id="inputMailConnexion" placeholder="{{personne.mailConnexion_pers}}">
+                  <input [(ngModel)]="personneMod.mail_connexion_pers" type="text" class="form-control"
+                          id="inputMailConnexion">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputRecenseur">Recenseur</label>
                   <select [(ngModel)]="personneMod.estRecenseur_pers" id="inputRecenseur" class="form-control">
-                    <option [selected]="personne.estRecenseur == 1" value="1">Oui</option>
-                    <option [selected]="personne.estRecenseur == 0" value="0">Non</option>
+                    <option [selected]="personne.estRecenseur_pers == 1" value="1">Oui</option>
+                    <option [selected]="personne.estRecenseur_pers == 0" value="0">Non</option>
                   </select>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputContact">Contact</label>
                   <select [(ngModel)]="personneMod.estContact_pers" id="inputContact" class="form-control">
-                    <option [selected]="personne.estContact == 1" value="1">Oui</option>
-                    <option [selected]="personne.estContact == 0" value="0">Non</option>
+                    <option [selected]="personne.estContact_pers == 1" value="1">Oui</option>
+                    <option [selected]="personne.estContact_pers == 0" value="0">Non</option>
                   </select>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputInstitutionCourte">Institution courte</label>
-                  <input [(ngModel)]="personneMod.institutionCourte_pers" type="text" class="form-control"
-                          id="inputInstitutionCourte" placeholder="{{personne.institutionCourte_pers}}">
+                  <input [(ngModel)]="personneMod.institution_courte_pers" type="text" class="form-control"
+                          id="inputInstitutionCourte">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputInstitutionLongue">Institution longue</label>
-                  <input [(ngModel)]="personneMod.institutionLongue_pers" type="text" class="form-control"
-                          id="inputInstitutionLongue" placeholder="{{personne.institutionLongue_pers}}">
+                  <input [(ngModel)]="personneMod.institution_longue_pers" type="text" class="form-control"
+                          id="inputInstitutionLongue">
                 </div>
-                <!-- <div class="form-group col-md-6">
-                  <label for="input">Adresse</label>
-                  <input [(ngModel)]="personneMod.institutionLongue_pers" type="text" class="form-control"
-                          id="input" placeholder="{{personne.institutionLongue_pers}}">
-                </div> -->
                 <div class="form-group col-md-6">
+                  <label for="inputRue">Rue</label>
+                  <input [(ngModel)]="personneMod.adr_rue_pers" type="text" class="form-control"
+                          id="inputRue">
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputNum">Numéro</label>
+                  <input [(ngModel)]="personneMod.adr_num_pers" type="text" class="form-control"
+                          id="inputNum">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputCp">Code postal</label>
+                  <input [(ngModel)]="personneMod.adr_cp_pers" type="text" class="form-control"
+                          id="inputCp">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPays">Pays</label>
+                  <input [(ngModel)]="personneMod.adr_pays_pers" type="text" class="form-control"
+                          id="inputPays">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputVille">Ville</label>
+                  <input [(ngModel)]="personneMod.adr_ville_pers" type="text" class="form-control"
+                          id="inputVille">
+                </div>
+                <div class="form-group col-md-12">
                   <label for="inputCommentaire">Commentaire</label>
-                  <input [(ngModel)]="personneMod.commentaire_pers" type="text" class="form-control"
-                          id="inputCommentaire" placeholder="{{personne.commentaire_pers}}">
+                  <textarea [(ngModel)]="personneMod.commentaire_pers" class="form-control" id="inputCommentaire" rows="3"></textarea>
                 </div>
               </div>
               <div *ngIf="erreur.isError" class="alert alert-danger">{{erreur.message}}</div>

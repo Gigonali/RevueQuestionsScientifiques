@@ -17,14 +17,18 @@
     if (isset($_GET['total'])) {
       echo json_encode($personneManager->total());
     } else {
-      if (isset($_GET['id'])) {
+      if (isset($_GET['id']) && !empty($_GET['id'])) {
         $idToGet = $_GET['id'];
         echo json_encode($personneManager->get($idToGet));
-      } else echo json_encode($personneManager->getAll());
+      } else if (isset($_GET['filtre']) && !empty($_GET['filtre'])) {
+        echo json_encode($personneManager->getAll($_GET['filtre']));
+      } else echo json_encode($personneManager->getAll('toutes'));
     }
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo 'not implemented yet';
+    $personneJSON = json_decode(file_get_contents('php://input'), true);
+    $personne = new Personne($personneJSON);
+    echo json_encode($personneManager->modifier($personne));
 
   } else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $personneJSON = json_decode(file_get_contents('php://input'), true);
