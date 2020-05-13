@@ -6,7 +6,10 @@ export interface Personne {
   mail_connexion_pers?: string;
   mdp_pers?: string;
   commentaire_pers?: string;
+  estFonctionnaire_pers: number;
+  estAuteur_pers: number;
   estRecenseur_pers: number;
+  estExpert_pers: number;
   estContact_pers: number;
   institution_courte_pers?: string;
   institution_longue_pers?: string;

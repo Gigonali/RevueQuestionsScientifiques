@@ -103,8 +103,12 @@ export class TabPersonnesComponent implements OnInit {
 
   getRolePersonne(personne: Personne) {
     const roles = [];
-    if (personne.estContact_pers > 0) { roles.push('Contact'); }
+
+    if (personne.estFonctionnaire_pers > 0) { roles.push('Fonctionnaire'); }
+    if (personne.estAuteur_pers > 0) { roles.push('Auteur'); }
     if (personne.estRecenseur_pers > 0) { roles.push('Recenseur'); }
+    if (personne.estExpert_pers > 0) { roles.push('Expert'); }
+    if (personne.estContact_pers > 0) { roles.push('Contact'); }
     if (roles.length < 1) { roles.push('/'); }
 
     return roles.join(', ');
@@ -124,7 +128,10 @@ export class TabPersonnesComponent implements OnInit {
       mail_connexion_pers: object.mail_connexion_pers,
       mdp_pers: '',
       commentaire_pers: object.commentaire_pers,
+      estFonctionnaire_pers: object.estFonctionnaire_pers,
+      estAuteur_pers: object.estAuteur_pers,
       estRecenseur_pers: object.estRecenseur_pers,
+      estExpert_pers: object.estExpert_pers,
       estContact_pers: object.estContact_pers,
       institution_courte_pers: object.institution_courte_pers,
       institution_longue_pers: object.institution_longue_pers,
@@ -144,7 +151,10 @@ export class TabPersonnesComponent implements OnInit {
       mail_connexion_pers: object.mail_connexion_pers,
       mdp_pers: '',
       commentaire_pers: object.commentaire_pers,
+      estFonctionnaire_pers: object.estFonctionnaire_pers,
+      estAuteur_pers: object.estAuteur_pers,
       estRecenseur_pers: object.estRecenseur_pers,
+      estExpert_pers: object.estExpert_pers,
       estContact_pers: object.estContact_pers,
       institution_courte_pers: object.institution_courte_pers,
       institution_longue_pers: object.institution_longue_pers,
@@ -189,7 +199,10 @@ export class TabPersonnesComponent implements OnInit {
       mail_connexion_pers: '',
       mdp_pers: '',
       commentaire_pers: '',
+      estFonctionnaire_pers: 0,
+      estAuteur_pers: 0,
       estRecenseur_pers: 0,
+      estExpert_pers: 0,
       estContact_pers: 0,
       institution_courte_pers: '',
       institution_longue_pers: '',
@@ -208,7 +221,7 @@ export class TabPersonnesComponent implements OnInit {
       case 'auteurs': return 'Ajouter un auteur ';
       case 'recenseurs': return 'Ajouter un recenseur ';
       case 'experts': return 'Ajouter un expert ';
-      case 'divers': return 'Ajouter un contact ';
+      case 'contacts': return 'Ajouter un contact ';
       default: return 'Ajouter une personne ';
     }
   }

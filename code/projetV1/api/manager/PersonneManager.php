@@ -46,8 +46,12 @@
 
         foreach ($result as $personneDB) {
           $personne = new Personne($personneDB);
+          $id = $personne->__get('id_pers');
           $personne->__set('mdp_pers', '');
           $personne->__set('code_reinit_pers', '');
+          $personne->__set('estFonctionnaire_pers', $this->isFonctionnaire($id));
+          $personne->__set('estAuteur_pers', $this->isAuteur($id));
+          $personne->__set('estExpert_pers', $this->isExpert($id));
           array_push($personnes, $personne);
         }
 
@@ -128,6 +132,7 @@
                        `adr_rue_pers`=:adrRue, `adr_cp_pers`=:adrCp, `adr_ville_pers`=:adrVille,
                        `adr_pays_pers`=:adrPays WHERE `id_pers`=:id";
         $prep = $this->connexion->prepare($sql);
+
         $prep->bindValue(':id', $personne->__get('id_pers'), PDO::PARAM_INT);
         $prep->bindValue(':nom', $personne->__get('nom_pers'), PDO::PARAM_STR);
         $prep->bindValue(':prenom', $personne->__get('prenom_pers'), PDO::PARAM_STR);
@@ -143,6 +148,7 @@
         $prep->bindValue(':adrCp', $personne->__get('adr_cp_pers'), PDO::PARAM_STR);
         $prep->bindValue(':adrVille', $personne->__get('adr_ville_pers'), PDO::PARAM_STR);
         $prep->bindValue(':adrPays', $personne->__get('adr_pays_pers'), PDO::PARAM_STR);
+
         $result = $prep->execute();
 
       } catch (PDOException $e) {
@@ -182,9 +188,71 @@
         case 'auteurs': return "SELECT * FROM personne INNER JOIN auteur ON personne.id_pers = auteur.id_pers";
         case 'recenseurs': return "SELECT * FROM personne WHERE estRecenseur_pers=1";
         case 'experts': return "SELECT * FROM personne INNER JOIN expert ON personne.id_pers = expert.id_pers";
-        case 'divers': return "SELECT * FROM personne WHERE estContact_pers=1";
+        case 'contacts': return "SELECT * FROM personne WHERE estContact_pers=1";
         default: return "SELECT * FROM personne";
       }
+    }
+
+    function isFonctionnaire($id) {
+      $prep = null;
+      $result = null;
+
+      try {
+        $sql = "SELECT count(*) FROM a WHERE `id_pers`=:idPersonne";
+        $prep = $this->connexion->prepare($sql);
+        $prep->bindValue(':idPersonne', $id, PDO::PARAM_INT);
+        $prep->execute();
+        $result = $prep->fetch();
+      } catch (PDOException $e) {
+        die($e);
+      } finally {
+        $prep->closeCursor();
+        $prep2 = null;
+      }
+
+      return $result[0];
+    }
+
+    function isAuteur($id) {
+      $prep = null;
+      $result = null;
+
+      try {
+        $sql = "SELECT count(*) FROM auteur WHERE `id_pers`=:idPersonne";
+        $prep = $this->connexion->prepare($sql);
+        $prep->bindValue(':idPersonne', $id, PDO::PARAM_INT);
+        $prep->execute();
+        $result = $prep->fetch();
+
+      } catch (PDOException $e) {
+        die($e);
+      } finally {
+        $prep->closeCursor();
+        $prep = null;
+      }
+
+      return $result[0];
+    }
+
+    function isExpert($id) {
+      $prep = null;
+      $result = null;
+
+      try {
+        $sql = "SELECT count(*) FROM expert WHERE `id_pers`=:idPersonne";
+        $prep = $this->connexion->prepare($sql);
+        $prep->bindValue(':idPersonne', $id, PDO::PARAM_INT);
+        $prep->execute();
+        $result = $prep->fetch();
+
+      } catch (PDOException $e) {
+        die($e);
+      } finally {
+        $prep->closeCursor();
+        $prep = null;
+      }
+
+      return $result[0];
     }
 
   }

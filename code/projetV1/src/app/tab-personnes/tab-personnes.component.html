@@ -2,19 +2,18 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th colspan="3">
+        <th colspan="7">
           <h2 *ngIf="filtre === 'toutes'">Personnes | Liste complète</h2>
           <h2 *ngIf="filtre !== 'toutes'">Personnes | Liste des {{filtre}}</h2>
         </th>
-        <th></th>
       </tr>
       <tr>
-        <th class="divHover text-center" scope="col">Nom/prénom</th>
-        <th class="divHover text-center" scope="col">Mail</th>
-        <th class="divHover text-center" scope="col">Rôle(s)</th>
-        <th class="divHover text-center" scope="col">Institution</th>
-        <th class="divHover text-center" scope="col">Adresse</th>
-        <th class="divHover text-center" scope="col">Commentaire</th>
+        <th class="divHover text-center align-middle" scope="col">Nom/prénom</th>
+        <th class="divHover text-center align-middle" scope="col">Mail</th>
+        <th class="divHover text-center align-middle" scope="col">Rôle(s)</th>
+        <th class="divHover text-center align-middle" scope="col">Institution</th>
+        <th class="divHover text-center align-middle" scope="col">Adresse</th>
+        <th class="divHover text-center align-middle" scope="col">Commentaire</th>
         <th class="text-right">
           <button type="button" class="btn btn-secondary" (click)="openXl(ajouter)">{{getAjoutButtonText()}}<i class="fas fa-plus-square"></i></button>
         </th>
@@ -50,8 +49,22 @@
                         id="ajoutMailConnexion">
               </div>
               <div class="form-group col-md-6">
+                <label for="ajoutAuteur">Auteur</label>
+                <select [(ngModel)]="ajoutPersonne.estAuteur_pers" id="ajoutAuteur" class="form-control">
+                  <option value="1">Oui</option>
+                  <option value="0">Non</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
                 <label for="ajoutRecenseur">Recenseur</label>
-                <select [(ngModel)]="ajoutPersonne.estRecenseur_pers" id="inputRecenseur" class="form-control">
+                <select [(ngModel)]="ajoutPersonne.estRecenseur_pers" id="ajoutRecenseur" class="form-control">
+                  <option value="1">Oui</option>
+                  <option value="0">Non</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ajoutExpert">Expert</label>
+                <select [(ngModel)]="ajoutPersonne.estExpert_pers" id="ajoutExpert" class="form-control">
                   <option value="1">Oui</option>
                   <option value="0">Non</option>
                 </select>
@@ -128,7 +141,7 @@
           {{personne.adr_pays_pers}}
         </td>
         <td class="text-center">{{personne.commentaire_pers}}</td>
-        <td class="text-right align-middle">
+        <td class="text-right">
           <!-- bouton voir plus -->
           <span class="divHover align-middle mr-2" id="voirplusPersonne" (click)="openXl(voirPlus)"><i class="fas fa-search-plus"></i></span>
           <ng-template #voirPlus let-modal>
@@ -161,12 +174,22 @@
                   <input [(ngModel)]="personne.mail_connexion_pers" type="text" class="form-control"
                           id="inputMailConnexion" readonly>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
+                  <label for="inputAuteur">Auteur</label>
+                  <input *ngIf="personne.estAuteur_pers > 0" value="Oui" id="inputAuteur" class="form-control" readonly>
+                  <input *ngIf="personne.estAuteur_pers < 1" value="Non" id="inputAuteur" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-3">
                   <label for="inputRecenseur">Recenseur</label>
                   <input *ngIf="personne.estRecenseur_pers > 0" value="Oui" id="inputRecenseur" class="form-control" readonly>
                   <input *ngIf="personne.estRecenseur_pers < 1" value="Non" id="inputRecenseur" class="form-control" readonly>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
+                  <label for="inputExpert">Expert</label>
+                  <input *ngIf="personne.estExpert_pers > 0" value="Oui" id="inputExpert" class="form-control" readonly>
+                  <input *ngIf="personne.estExpert_pers < 1" value="Non" id="inputExpert" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-3">
                   <label for="inputContact">Contact</label>
                   <input *ngIf="personne.estContact_pers > 0" value="Oui" id="inputContact" class="form-control" readonly>
                   <input *ngIf="personne.estContact_pers < 1" value="Non" id="inputContact" class="form-control" readonly>
