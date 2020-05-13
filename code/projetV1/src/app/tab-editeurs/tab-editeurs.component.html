@@ -55,7 +55,7 @@
             </div>
 
           <div class="modal-footer">
-            <button type="reset" class="btn btn-danger" (click)="modal.close('Close click'); ajouterMaisonEdition(ajoutMaisonEdition)">Ajouter</button>
+            <button type="reset" class="btn btn-primary" (click)="modal.close('Close click'); ajouterMaisonEdition(ajoutMaisonEdition)">Ajouter</button>
             <button type="button" class="btn btn-secondary" (click)="modal.close('Close click'); initAjoutME()">Annuler</button>
           </div>
         </ng-template>
@@ -79,9 +79,8 @@
         </td> -->
         <td class="text-right align-middle">
           <!-- bouton pour modifier un éditeur -->
-          <span class="divHover align-middle" id="modifyMaisonEdition" (click)="openSm(modif); fillMeForModif(me.id)"><i class="fas fa-edit"></i></span>
-        </td>
-        <td class="text-right align-middle">
+          <span class="divHover align-middle mr-2" id="modifyMaisonEdition" (click)="openSm(modif); fillMeForModif(me.id)"><i class="fas fa-edit"></i></span>
+
           <!-- bouton pour supprimer un éditeur -->
           <span class="divHover align-middle" id="deleteMaisonEdition" (click)="openSm(delete)"><i class="fas fa-trash"></i></span>
         </td>
@@ -102,7 +101,7 @@
         </ng-template>
         <ng-template #modif let-modal>
           <div class="modal-header text-center">
-            <h4 class="modal-title">Modifier</h4>
+            <h4 class="modal-title">Confirmer</h4>
             <button type="button" class="close" aria-label="Close" (click)="onCancel(modal);">
               <span aria-hidden="true">&times;</span>
             </button>
