@@ -49,7 +49,7 @@
           $id = $personne->__get('id_pers');
           $personne->__set('mdp_pers', '');
           $personne->__set('code_reinit_pers', '');
-          $personne->__set('estFonctionnaire_pers', $this->isFonctionnaire($id));
+          $personne->__set('estGestionnaire_pers', $this->isGestionnaire($id));
           $personne->__set('estAuteur_pers', $this->isAuteur($id));
           $personne->__set('estExpert_pers', $this->isExpert($id));
           array_push($personnes, $personne);
@@ -193,7 +193,7 @@
       }
     }
 
-    function isFonctionnaire($id) {
+    function isGestionnaire($id) {
       $prep = null;
       $result = null;
 

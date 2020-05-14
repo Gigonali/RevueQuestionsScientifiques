@@ -6,7 +6,7 @@ export interface Personne {
   mail_connexion_pers?: string;
   mdp_pers?: string;
   commentaire_pers?: string;
-  estFonctionnaire_pers: number;
+  estGestionnaire_pers: number;
   estAuteur_pers: number;
   estRecenseur_pers: number;
   estExpert_pers: number;
