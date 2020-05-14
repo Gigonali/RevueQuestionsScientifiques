@@ -199,7 +199,7 @@ export class TabPersonnesComponent implements OnInit {
       mail_connexion_pers: '',
       mdp_pers: '',
       commentaire_pers: '',
-      estFonctionnaire_pers: 0,
+      estGestionnaire_pers: 0,
       estAuteur_pers: 0,
       estRecenseur_pers: 0,
       estExpert_pers: 0,
