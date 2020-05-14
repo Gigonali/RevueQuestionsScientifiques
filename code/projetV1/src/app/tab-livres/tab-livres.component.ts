@@ -75,23 +75,37 @@ export class TabLivresComponent implements OnInit {
   }
 
 
-
   ajouterLivre(livre: Livre) {
-    const sub = this.livreService.ajouter(livre)
-    .subscribe(livre => {
-      this.refreshLivres();
-      this.initAjoutLivre();
-      sub.unsubscribe();
+    const sub = this.livreService.existe(this.ajoutLivre.isbn, this.ajoutLivre.isbnNumerique, this.ajoutLivre.id).subscribe( res =>{
+      if(res){
+            alert('ISBN ou ISBN numérique déjà existant');
+            sub.unsubscribe();
+      }else {
+          const sub = this.livreService.ajouter(livre)
+          .subscribe(livre => {
+            this.refreshLivres();
+            this.initAjoutLivre();
+            sub.unsubscribe();
+          });
+      };
+
     });
   }
 
   modifierLivre(livre: Livre) {
-    const sub = this.livreService.modifier(livre)
-    .subscribe(livre => {
-      this.refreshLivres();
-      this.refreshMaisonEditions();
-      this.initAjoutLivre();
-      sub.unsubscribe();
+    const sub = this.livreService.existe(this.ajoutLivre.isbn, this.ajoutLivre.isbnNumerique, this.ajoutLivre.id).subscribe( res =>{
+      if(res){
+            alert('ISBN ou ISBN numérique déjà existant');
+            sub.unsubscribe();
+      }else {
+          const sub = this.livreService.modifier(livre)
+          .subscribe(livre => {
+            this.refreshLivres();
+            this.initAjoutLivre();
+            sub.unsubscribe();
+          });
+      };
+
     });
   }
 

@@ -27,7 +27,7 @@ class BackupManager{
       $rqs_dumper = Shuttle_Dumper::create(array(
         'host' => 'localhost',
         'username' => 'root',
-        'password' => '', //'1234',
+        'password' => '1234',
         'db_name' => 'rqs'
       ));
 

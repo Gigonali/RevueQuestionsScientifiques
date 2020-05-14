@@ -42,4 +42,8 @@ export class LivreService {
   getAllEtatsLivre(): Observable<EtatLivre[]>{
     return this.http.get<EtatLivre[]>(`${environment.apiLivre}?etats`);
   }
+
+  existe(isbn: string, isbnNum: string, id: number): Observable<boolean>{
+    return  this.http.get<boolean>(`${environment.apiLivre}?isbn=${isbn}&isbnNum=${isbnNum}&idC=${id}`);
+  }
 }

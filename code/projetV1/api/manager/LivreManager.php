@@ -135,6 +135,32 @@ class LivreManager {
       return $resultat;
     }
 
+    public function existe($id,$isbn, $isbnNum){
+      try {
+        $sql = "SELECT COUNT(1) FROM (SELECT isbn_liv, isbn_numerique_liv from livre WHERE id_liv != :id) as res WHERE res.isbn_liv = :isbn OR res.isbn_numerique_liv = :isbnNumerique OR res.isbn_liv = :isbnNumerique2 OR res.isbn_numerique_liv = :isbn2";
+        $q = $this->connexion->prepare($sql);
+        $q->bindValue(':id', $id, PDO::PARAM_INT);
+        $q->bindValue(':isbn', $isbn, PDO::PARAM_STR);
+        $q->bindValue(':isbnNumerique', $isbnNum, PDO::PARAM_STR);
+        $q->bindValue(':isbnNumerique2', $isbnNum, PDO::PARAM_STR);
+        $q->bindValue(':isbn2', $isbn, PDO::PARAM_STR);
+
+
+        $q->execute();
+        $resultat = $q->fetchAll(PDO::FETCH_ASSOC);
+        if($resultat[0]['COUNT(1)'] != 0){
+          return true;
+        }else{
+          return false;
+        }
+      } catch (PDOException $e) {
+        die($e);
+      } finally {
+        $q->closeCursor();
+      }
+      return $resultat;
+    }
+
     public function total() {
       return $this->connexion->query('SELECT COUNT(*) FROM livre')->fetchColumn();
     }

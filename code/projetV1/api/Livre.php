@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id'])) {
       $idToGet = $_GET['id'];
       echo json_encode($livreManager->get($idToGet));
+    } else if (isset($_GET['isbn']) && isset($_GET['isbnNum'])){
+      echo json_encode($livreManager->existe($_GET['idC'], $_GET['isbn'],$_GET['isbnNum']));
     } else echo json_encode($livreManager->getAll());
   }
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
