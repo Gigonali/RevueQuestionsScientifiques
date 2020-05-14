@@ -8,7 +8,10 @@
     private $mail_connexion_pers;
     private $mdp_pers;
     private $commentaire_pers;
+    private $estGestionnaire_pers;
+    private $estAuteur_pers;
     private $estRecenseur_pers;
+    private $estExpert_pers;
     private $estContact_pers;
     private $institution_courte_pers;
     private $institution_longue_pers;
@@ -58,7 +61,10 @@
                'mail_connexion_pers' => $this->__get('mail_connexion_pers'),
                'mdp_pers' => $this->__get('mdp_pers'),
                'commentaire_pers' => $this->__get('commentaire_pers'),
+               'estGestionnaire_pers' => $this->__get('estGestionnaire_pers'),
+               'estAuteur_pers' => $this->__get('estAuteur_pers'),
                'estRecenseur_pers' => $this->__get('estRecenseur_pers'),
+               'estExpert_pers' => $this->__get('estExpert_pers'),
                'estContact_pers' => $this->__get('estContact_pers'),
                'institution_courte_pers' => $this->__get('institution_courte_pers'),
                'institution_longue_pers' => $this->__get('institution_longue_pers'),

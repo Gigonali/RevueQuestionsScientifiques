@@ -1,4 +1,4 @@
--- Generation time: Tue, 12 May 2020 15:11:18 +0200
+-- Generation time: Tue, 12 May 2020 15:12:46 +0200
 -- Host: localhost
 -- DB name: rqs
 /*!40030 SET NAMES UTF8 */;
@@ -19,7 +19,6 @@ CREATE TABLE `a` (
   PRIMARY KEY (`id_perm`,`id_pers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `a` VALUES ('2','2');
 
 
 DROP TABLE IF EXISTS `action`;
@@ -37,7 +36,6 @@ CREATE TABLE `administration` (
   PRIMARY KEY (`id_pers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `administration` VALUES ('2');
 
 
 DROP TABLE IF EXISTS `auteur`;
@@ -57,7 +55,7 @@ CREATE TABLE `domaine` (
 
 INSERT INTO `domaine` VALUES ('5','ezef'),
 ('14','fee'),
-('33','z');
+('33','z'); 
 
 
 DROP TABLE IF EXISTS `ecrit`;
@@ -180,7 +178,7 @@ CREATE TABLE `permission` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `permission` VALUES ('1','GESTIONNAIRE'),
-('2','ADMINISTRATEUR');
+('2','ADMINISTRATEUR'); 
 
 
 DROP TABLE IF EXISTS `personne`;
@@ -207,7 +205,7 @@ CREATE TABLE `personne` (
 
 INSERT INTO `personne` VALUES ('3','jean','charle','jeancharle@hotmail.com','jeancharle@hotmail.com','jeancharle','il est cool','Y','N','InstiCourte','InstiLongue','10','Corbeau','zef','Charleroi','Belgique','1000'),
 ('5','jean1','charle21','jean1charle@hotmail.com','jeanchar1le@hotmail.com','jeancharle1','il est cool1','n','y','InstiCourte1','InstiLongue1','1','Corbeaui','zefg','Charleroif','Belgiquen','10001'),
-('6','jean3','charle3','jeancharle@hotmail.com','jeancharle@hotmail.com','jeancharle','il est cool','Y','N','InstiCourte','InstiLongue','10','Corbeau','zef','Charleroi','Belgique','1000');
+('6','jean3','charle3','jeancharle@hotmail.com','jeancharle@hotmail.com','jeancharle','il est cool','Y','N','InstiCourte','InstiLongue','10','Corbeau','zef','Charleroi','Belgique','1000'); 
 
 
 DROP TABLE IF EXISTS `porte`;
@@ -254,7 +252,7 @@ CREATE TABLE `publication` (
   PRIMARY KEY (`id_pub`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `publication` VALUES ('1','publication 1','rï¿½sumï¿½ publication 1','lieux pub','2020-05-12','Plagiat pub 1','1','3','5','2');
+INSERT INTO `publication` VALUES ('1','publication 1','résumé publication 1','lieux pub','2020-05-12','Plagiat pub 1','1','3','5','2'); 
 
 
 DROP TABLE IF EXISTS `revue`;
@@ -269,7 +267,7 @@ INSERT INTO `revue` VALUES ('3','5','1'),
 ('4','2','1'),
 ('5','0','0'),
 ('6','3','0'),
-('7','7','0');
+('7','7','0'); 
 
 
 DROP TABLE IF EXISTS `tient`;
@@ -302,7 +300,7 @@ INSERT INTO `type_publication` VALUES ('1','Articles'),
 ('2','Analyses critiques'),
 ('3','Comptes rendus'),
 ('4','Divers'),
-('5','Spï¿½ciale HELHA');
+('5','Spéciale HELHA'); 
 
 
 
