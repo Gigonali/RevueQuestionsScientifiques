@@ -17,11 +17,6 @@
                   </div>
                   <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="exemple@gmail.com" [(ngModel)]="this.authentifiant.mailCo" [ngModelOptions]="{ standalone: true }">
                 </div>
-                <div class="text-center" *ngIf="(emailCo.invalid && emailCo.touched) || emailCo.dirty">
-                  <small *ngIf="emailCo.errors?.required" class="text-danger">Veuillez renseignez une adresse mail</small>
-                  <!--question mark(?) is a safe navigation operator-->
-                  <small *ngIf="emailCo.errors?.pattern" class="text-danger">Veuillez renseignez une adresse mail valide</small>
-                </div>
               </div>
               <div class="form-group">
                 <label>Mot de passe</label>
