@@ -20,9 +20,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($json['email']) && !isset($json
     if($answer){
         $code = md5(rand());
         $reinitManager->initCode($json['email'], $code);
-        
+
         //MAIL
-        $msg = 'Pour reinitialiser votre mot de passe, suivez le lien suivant: <a href="http://localhost:4200/reinitialisation/'.$json['email'].'/'.$code.'">lien</a>, <br> Si vous n\'êtes pas concerné, ignorez ce mail';
+        $msg = 'Pour reinitialiser votre mot de passe, suivez le lien suivant: <a href="http://projets-2big.rf.gd/revues-scientifiques/reinitialisation/'.$json['email'].'/'.$code.'">lien</a>, <br> Si vous n\'êtes pas concerné, ignorez ce mail';
         $mailManager->envoyerEmail($json['email'],$msg,'Reinitialisation de votre mot de passe | RQSEdition');
     }
     echo $answer;

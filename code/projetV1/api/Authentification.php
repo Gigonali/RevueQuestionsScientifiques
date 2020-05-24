@@ -16,7 +16,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $authentifiantJSON = json_decode(file_get_contents('php://input'), true);
-    $answer=$authManager->connecter($authentifiantJSON['mailCo'],$authentifiantJSON['mdp']);
+    print_r($authentifiantJSON);
+      $answer=$authManager->connecter($authentifiantJSON['mailCo'],$authentifiantJSON['mdp']);
     if (is_array($answer) && password_verify($authentifiantJSON['mdp'],$answer['hashMdp'])) {  //mail et mot de passe correspondent à un User
         switch ($authManager->getPermission($answer['id'])) {
           case 'GESTIONNAIRE':

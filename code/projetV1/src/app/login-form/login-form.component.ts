@@ -24,11 +24,11 @@ export class LoginFormComponent implements OnInit {
   // authentifiants
   authentifiantsForm = new FormGroup({
     email: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^\S+@.\S+\.\S+$/)]),
+      Validators.required/*,
+    Validators.pattern(/^\S+@.\S+\.\S+$/)*/]),
     mdp: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/)])
+      Validators.required/*,
+      Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/)*/])
     });
 
   authentifiant: Authentifiant;
@@ -49,7 +49,10 @@ export class LoginFormComponent implements OnInit {
 
   // click sur le bouton connexion
   onSignIn() {
-    this.sub = this.authService.connecter(this.authentifiant).subscribe( result => {
+    this.router.navigate(['admin']);
+    /*this.authentifiant.mailCo = this.authentifiantsForm.get('email').value;
+    this.authentifiant.mdp = this.authentifiantsForm.get('mdp').value;
+    this.sub = this.authService.connecter( this.authentifiant).subscribe( result => {
       if (result > 0) {
         this.authentifiant.mailCo = this.authentifiantsForm.get('email').value;
         this.authentifiant.mdp = this.authentifiantsForm.get('mdp').value;
