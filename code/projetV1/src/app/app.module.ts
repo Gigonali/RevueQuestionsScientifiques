@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { GestioHomeComponent } from './gestio-home/gestio-home.component';
 import { AuthorHomeComponent } from './author-home/author-home.component';
@@ -46,9 +45,6 @@ import { MaintenanceService } from './services/maintenance.service';
 // pipe
 import { DateCustomPipe } from './pipes/date-custom.pipe';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,14 +74,12 @@ import { DateCustomPipe } from './pipes/date-custom.pipe';
     TabRevueComponent,
     TabDomainesComponent,
     ReinitialitionMdpComponent,
-    DateCustomPipe,
-    UserHomeComponent,
+    DateCustomPipe
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
   ],
