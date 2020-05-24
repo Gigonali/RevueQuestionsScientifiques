@@ -22,7 +22,6 @@ class AuthentificationManager{
         $prep->closeCursor();
         $prep = null;
       }
-      print_r($result);
       if ($result[0]["answer"]) {
         return $result[0]; //FOUND
       } else {

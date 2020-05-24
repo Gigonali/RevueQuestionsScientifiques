@@ -24,6 +24,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
+    alert('cc');
   }
 
   // Pour mettre à jour la taille si la
